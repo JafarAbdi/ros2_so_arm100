@@ -1,0 +1,8 @@
+trajectory_execution:
+  allowed_execution_duration_scaling: 2.5
+  allowed_goal_duration_margin: 1.0
+  allowed_start_tolerance: 0.01
+  execution_duration_monitoring: true
+
+moveit_manage_controllers: false
+moveit_controller_manager: moveit_ros_control_interface/Ros2ControlManager

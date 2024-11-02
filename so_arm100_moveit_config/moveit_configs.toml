@@ -1,0 +1,8 @@
+[moveit_configs]
+robot_description = "package://so_arm100_description/urdf/so_arm100.urdf.xacro"
+robot_description_semantic = "config/so_100arm.srdf"
+robot_description_kinematics = "config/kinematics.yaml"
+joint_limits = "config/joint_limits.yaml"
+planning_pipelines.ompl = "config/ompl_planning.yaml"
+trajectory_execution = "config/trajectory_execution.yaml"
+moveit_cpp = "config/moveit_cpp.yaml"
