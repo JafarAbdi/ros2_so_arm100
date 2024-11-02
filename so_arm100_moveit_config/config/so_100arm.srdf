@@ -9,7 +9,7 @@
   <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
   <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
   <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
-  <group name="arm">
+  <group name="manipulator">
     <chain base_link="base" tip_link="wrist_2_link" />
   </group>
   <group name="gripper">
@@ -24,21 +24,21 @@
   <group_state name="closed" group="gripper">
     <joint name="jaw_joint" value="-0.2" />
   </group_state>
-  <group_state name="zero" group="arm">
+  <group_state name="zero" group="manipulator">
     <joint name="elbow_joint" value="0" />
     <joint name="shoulder_lift_joint" value="0" />
     <joint name="shoulder_pan_joint" value="0" />
     <joint name="wrist_pitch_joint" value="0" />
     <joint name="wrist_roll_joint" value="0" />
   </group_state>
-  <group_state name="extended" group="arm">
+  <group_state name="extended" group="manipulator">
     <joint name="elbow_joint" value="-1.57" />
     <joint name="shoulder_lift_joint" value="1.57" />
     <joint name="shoulder_pan_joint" value="0" />
     <joint name="wrist_pitch_joint" value="-1.57" />
     <joint name="wrist_roll_joint" value="1.57" />
   </group_state>
-  <group_state name="rest" group="arm">
+  <group_state name="rest" group="manipulator">
     <joint name="elbow_joint" value="1.57" />
     <joint name="shoulder_lift_joint" value="-1.75" />
     <joint name="shoulder_pan_joint" value="0" />
@@ -50,7 +50,7 @@
     name="gripper"
     parent_link="wrist_2_link"
     group="gripper"
-    parent_group="arm"
+    parent_group="manipulator"
   />
   <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
   <disable_collisions link1="base" link2="shoulder_link" reason="Adjacent" />
