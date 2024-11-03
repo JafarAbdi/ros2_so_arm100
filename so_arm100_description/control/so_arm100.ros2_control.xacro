@@ -8,19 +8,22 @@
         </xacro:if>
         <xacro:if value="${ros2_control_hardware_type == 'real'}">
           <plugin>feetech_hardware_interface/FeetechHardwareInterface</plugin>
-          <param name="usb_port">/dev/LeRobotLeader</param>
-          <param name="baud_rate">1000000</param>
+          <param name="usb_port">/dev/LeRobotFollower</param>
         </xacro:if>
       </hardware>
       <joint name="shoulder_pan_joint">
         <param name="initial_position">0.0</param>
         <param name="id">1</param>
+        <param name="p_cofficient">8</param>
+        <param name="offset">2048</param>
         <command_interface name="position" />
         <state_interface name="position" />
         <state_interface name="velocity" />
       </joint>
       <joint name="shoulder_lift_joint">
         <param name="id">2</param>
+        <param name="p_cofficient">16</param>
+        <param name="offset">2125</param>
         <param name="initial_position">0.0</param>
         <command_interface name="position" />
         <state_interface name="position" />
@@ -28,6 +31,8 @@
       </joint>
       <joint name="elbow_joint">
         <param name="id">3</param>
+        <param name="offset">2080</param>
+        <param name="p_cofficient">16</param>
         <param name="initial_position">0.0</param>
         <command_interface name="position" />
         <state_interface name="position" />
@@ -35,6 +40,8 @@
       </joint>
       <joint name="wrist_pitch_joint">
         <param name="id">4</param>
+        <param name="offset">3110</param>
+        <param name="p_cofficient">16</param>
         <param name="initial_position">0.0</param>
         <command_interface name="position" />
         <state_interface name="position" />
@@ -42,6 +49,8 @@
       </joint>
       <joint name="wrist_roll_joint">
         <param name="id">5</param>
+        <param name="offset">1024</param>
+        <param name="p_cofficient">16</param>
         <param name="initial_position">0.0</param>
         <command_interface name="position" />
         <state_interface name="position" />
@@ -49,6 +58,8 @@
       </joint>
       <joint name="jaw_joint">
         <param name="id">6</param>
+        <param name="offset">2070</param>
+        <param name="p_cofficient">16</param>
         <param name="initial_position">0.0</param>
         <command_interface name="position" />
         <state_interface name="position" />
