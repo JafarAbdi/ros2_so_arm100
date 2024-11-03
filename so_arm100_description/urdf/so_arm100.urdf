@@ -89,11 +89,12 @@ changes:
       </geometry>
     </collision>
   </link>
-  <joint name="shoulder_pan_joint" type="continuous">
+  <joint name="shoulder_pan_joint" type="revolute">
     <origin xyz="0 -0.0452 0.0165" rpy="1.5708 0 0" />
     <parent link="base" />
     <child link="shoulder_link" />
-    <axis xyz="0 1 0" />
+    <axis xyz="0 -1 0" />
+    <limit lower="-2.0" upper="2.0" effort="1" velocity="1" />
   </joint>
   <link name="upper_arm_link">
     <inertial>
@@ -127,11 +128,12 @@ changes:
       </geometry>
     </collision>
   </link>
-  <joint name="shoulder_lift_joint" type="continuous">
+  <joint name="shoulder_lift_joint" type="revolute">
     <origin xyz="0 0.1025 0.0306" rpy="0 0 0" />
     <parent link="shoulder_link" />
     <child link="upper_arm_link" />
     <axis xyz="1 0 0" />
+    <limit lower="-1.75" upper="1.75" effort="1" velocity="1" />
   </joint>
   <link name="forearm_link">
     <inertial>
@@ -165,11 +167,12 @@ changes:
       </geometry>
     </collision>
   </link>
-  <joint name="elbow_joint" type="continuous">
+  <joint name="elbow_joint" type="revolute">
     <origin xyz="0 0.11257 0.028" rpy="0 0 0" />
     <parent link="upper_arm_link" />
     <child link="forearm_link" />
     <axis xyz="1 0 0" />
+    <limit lower="-1.75" upper="1.57" effort="1" velocity="1" />
   </joint>
   <link name="wrist_1_link">
     <inertial>
@@ -207,11 +210,12 @@ changes:
       </geometry>
     </collision>
   </link>
-  <joint name="wrist_pitch_joint" type="continuous">
+  <joint name="wrist_pitch_joint" type="revolute">
     <origin xyz="0 0.0052 0.1349" rpy="0 0 0" />
     <parent link="forearm_link" />
     <child link="wrist_1_link" />
     <axis xyz="1 0 0" />
+    <limit lower="-3.5" upper="0.2" effort="1" velocity="1" />
   </joint>
   <link name="wrist_2_link">
     <inertial>
@@ -245,11 +249,12 @@ changes:
       </geometry>
     </collision>
   </link>
-  <joint name="wrist_roll_joint" type="continuous">
+  <joint name="wrist_roll_joint" type="revolute">
     <origin xyz="0 -0.0601 0" rpy="0 0 0" />
     <parent link="wrist_1_link" />
     <child link="wrist_2_link" />
     <axis xyz="0 1 0" />
+    <limit lower="-1.0" upper="4.0" effort="1" velocity="1" />
   </joint>
   <link name="jaw_link">
     <inertial>
@@ -287,10 +292,11 @@ changes:
       </geometry>
     </collision>
   </link>
-  <joint name="jaw_joint" type="continuous">
+  <joint name="jaw_joint" type="revolute">
     <origin xyz="-0.0202 -0.0244 0" rpy="3.1416 0 3.1416" />
     <parent link="wrist_2_link" />
     <child link="jaw_link" />
     <axis xyz="0 0 1" />
+    <limit lower="-0.22" upper="2.0" effort="1" velocity="1" />
   </joint>
 </robot>
