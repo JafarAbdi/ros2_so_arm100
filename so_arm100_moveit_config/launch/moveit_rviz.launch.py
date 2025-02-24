@@ -3,22 +3,12 @@ from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
-from moveitpy_simple.moveit_configs_utils.moveit_configs_builder import (
-    MoveItConfigsBuilder,
-)
+
+from so_arm100_description.launch_utils import MoveItConfigs
 
 
 def generate_launch_description():
-    moveit_configs = (
-        MoveItConfigsBuilder("so_arm100_moveit_config")
-        .robot_description()
-        .robot_description_semantic()
-        .robot_description_kinematics()
-        .joint_limits()
-        .trajectory_execution()
-        .planning_pipelines()
-        .to_moveit_configs()
-    )
+    moveit_configs = MoveItConfigs()
 
     return LaunchDescription(
         [

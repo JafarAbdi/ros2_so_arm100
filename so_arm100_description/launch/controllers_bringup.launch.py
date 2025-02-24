@@ -2,8 +2,8 @@ from ament_index_python.packages import get_package_share_path
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch_ros.actions import Node
-from moveitpy_simple.moveit_configs_utils.file_loaders import load_xacro
-from moveitpy_simple.moveit_configs_utils.launch_utils import launch_configurations
+
+from so_arm100_description.launch_utils import launch_configurations, load_xacro
 
 startup_controllers = [
     "joint_state_broadcaster",

@@ -7,6 +7,6 @@ install(
   DIRECTORY launch
   DESTINATION share/${PROJECT_NAME})
 install(DIRECTORY rviz launch config DESTINATION share/${PROJECT_NAME})
-install(FILES .setup_assistant moveit_configs.toml DESTINATION share/${PROJECT_NAME})
+install(FILES .setup_assistant DESTINATION share/${PROJECT_NAME})
 
 ament_package()
