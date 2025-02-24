@@ -1,9 +1,8 @@
-from launch_ros.actions import Node
 from launch import LaunchDescription
-from launch.substitutions import PathJoinSubstitution, LaunchConfiguration
-from launch_ros.substitutions import FindPackageShare
 from launch.actions import DeclareLaunchArgument
-
+from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
+from launch_ros.actions import Node
+from launch_ros.substitutions import FindPackageShare
 from moveitpy_simple.moveit_configs_utils.moveit_configs_builder import (
     MoveItConfigsBuilder,
 )
@@ -45,5 +44,5 @@ def generate_launch_description():
                     moveit_configs.planning_pipelines,
                 ],
             ),
-        ]
+        ],
     )

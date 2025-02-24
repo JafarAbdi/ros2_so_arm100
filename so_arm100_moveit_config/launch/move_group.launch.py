@@ -1,7 +1,5 @@
-from launch_ros.actions import Node
 from launch import LaunchDescription
-
-
+from launch_ros.actions import Node
 from moveitpy_simple.moveit_configs_utils.moveit_configs_builder import (
     MoveItConfigsBuilder,
 )
@@ -27,5 +25,5 @@ def generate_launch_description():
                     moveit_configs.to_dict(),
                 ],
             ),
-        ]
+        ],
     )

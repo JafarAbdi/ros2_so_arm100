@@ -1,9 +1,9 @@
 from ament_index_python.packages import get_package_share_path
 from launch import LaunchDescription
-from launch_ros.actions import Node
 from launch.actions import DeclareLaunchArgument
-from moveitpy_simple.moveit_configs_utils.launch_utils import launch_configurations
+from launch_ros.actions import Node
 from moveitpy_simple.moveit_configs_utils.file_loaders import load_xacro
+from moveitpy_simple.moveit_configs_utils.launch_utils import launch_configurations
 
 startup_controllers = [
     "joint_state_broadcaster",
@@ -27,7 +27,7 @@ def make_robot_state_publisher_node(args):
             parameters=[
                 {"robot_description": robot_description},
             ],
-        )
+        ),
     ]
 
 
