@@ -29,6 +29,7 @@
   <exec_depend>xacro</exec_depend>
   <exec_depend>joint_trajectory_controller</exec_depend>
   <exec_depend>controller_manager</exec_depend>
+  <exec_depend>moveit_ros_control_interface</exec_depend>
   <exec_depend>moveit_ros_move_group</exec_depend>
   <exec_depend>moveit_ros_visualization</exec_depend>
   <exec_depend>moveit_ros_warehouse</exec_depend>
