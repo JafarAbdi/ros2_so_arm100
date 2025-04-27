@@ -18,7 +18,10 @@ def make_robot_state_publisher_node(args):
         get_package_share_path("so_arm100_description")
         / "urdf"
         / "so_arm100.urdf.xacro",
-        mappings={"ros2_control_hardware_type": args.hardware_type},
+        mappings={
+            "ros2_control_hardware_type": args.hardware_type,
+            "usb_port": args.usb_port
+        },
     )
     return [
         Node(
@@ -41,6 +44,7 @@ def generate_launch_description():
     return LaunchDescription(
         [
             DeclareLaunchArgument("hardware_type", default_value="mock_components"),
+            DeclareLaunchArgument("usb_port", default_value="/dev/LeRobotFollower"),
             Node(
                 package="controller_manager",
                 executable="ros2_control_node",
