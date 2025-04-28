@@ -28,6 +28,7 @@ def make_robot_state_publisher_node(args):
         / "so_arm100.urdf.xacro",
         mappings={
             "prefix": namespace,
+            "ros2_control_file": args.ros2_control_xacro_file,
             "ros2_control_hardware_type": args.hardware_type,
             "usb_port": args.usb_port
         },
@@ -47,10 +48,28 @@ def make_robot_state_publisher_node(args):
 def generate_launch_description():
     bringup_dir = get_package_share_path("so_arm100_description")
 
-
-    ros2_controllers_file = os.path.join(
-        bringup_dir, "control", "ros2_controllers.yaml"
+    ros2_control_xacro_file_arg = DeclareLaunchArgument(
+        'ros2_control_xacro_file',
+        default_value=os.path.join(
+            bringup_dir,
+            "control",
+            "so_arm100.ros2_control.xacro"
+        ),
+        description='Full path to the ros2_control xacro file'
     )
+
+    # Get controller configuration from launch arg
+    controller_config_file_arg = DeclareLaunchArgument(
+        'controller_config_file',
+        default_value=os.path.join(
+            bringup_dir,
+            "control",
+            "ros2_controllers.yaml"
+        ),
+        description='Full path to the controller configuration file to use'
+    )
+
+    ros2_controllers_file = LaunchConfiguration('controller_config_file')
 
     namespace = LaunchConfiguration('namespace')
     use_namespace = LaunchConfiguration('use_namespace')
@@ -79,6 +98,18 @@ def generate_launch_description():
         allow_substs=True,
     )
 
+    hardware_type_arg = DeclareLaunchArgument(
+        'hardware_type',
+        default_value='mock_components',
+        description='Hardware type for the robot. Supported types [mock_components, real]',
+    )
+
+    usb_port_arg = DeclareLaunchArgument(
+        'usb_port',
+        default_value='/dev/LeRobotFollower',
+        description='USB port for the robot. Only used when hardware_type is real',
+    )
+
     use_namespace_arg = DeclareLaunchArgument(
         'use_namespace',
         default_value='false',
@@ -94,10 +125,12 @@ def generate_launch_description():
 
     return LaunchDescription(
         [
-            DeclareLaunchArgument("hardware_type", default_value="mock_components"),
-            DeclareLaunchArgument("usb_port", default_value="/dev/LeRobotFollower"),
+            hardware_type_arg,
+            usb_port_arg,
             use_namespace_arg,
             namespace_arg,
+            ros2_control_xacro_file_arg,
+            controller_config_file_arg,
             Node(
                 package="controller_manager",
                 executable="ros2_control_node",
