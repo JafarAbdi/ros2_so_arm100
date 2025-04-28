@@ -1,6 +1,9 @@
 <?xml version="1.0" ?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:macro name="ros2_control" params="prefix ros2_control_hardware_type usb_port">
+  <xacro:macro
+    name="ros2_control"
+    params="prefix ros2_control_hardware_type usb_port"
+  >
     <ros2_control name="SO-ARM100" type="system">
       <hardware>
         <xacro:if value="${ros2_control_hardware_type == 'mock_components'}">

@@ -1,14 +1,20 @@
 <?xml version="1.0" ?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="so_100arm">
   <xacro:arg name="ros2_control_hardware_type" default="mock_components" />
-  <xacro:arg name="ros2_control_file" default="$(find so_arm100_description)/control/so_arm100.ros2_control.xacro" />
-  <xacro:arg name="urdf_file" default="$(find so_arm100_description)/urdf/so_arm100_macro.xacro" />
+  <xacro:arg
+    name="ros2_control_file"
+    default="$(find so_arm100_description)/control/so_arm100.ros2_control.xacro"
+  />
+  <xacro:arg
+    name="urdf_file"
+    default="$(find so_arm100_description)/urdf/so_arm100_macro.xacro"
+  />
   <xacro:arg name="usb_port" default="/dev/LeRobotFollower" />
   <xacro:arg name="prefix" default="" />
 
   <!-- Robot description -->
   <xacro:include filename="$(arg urdf_file)" />
-  <xacro:so_arm100 prefix="$(arg prefix)"/>
+  <xacro:so_arm100 prefix="$(arg prefix)" />
 
   <!-- ros2_control description -->
   <xacro:include filename="$(arg ros2_control_file)" />

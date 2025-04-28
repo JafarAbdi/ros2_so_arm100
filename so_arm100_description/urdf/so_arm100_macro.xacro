@@ -44,7 +44,9 @@ changes:
           <mesh filename="package://so_arm100_description/meshes/Base.STL" />
         </geometry>
         <material name="">
-          <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+          <color
+            rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"
+          />
         </material>
       </visual>
       <collision>
@@ -78,7 +80,9 @@ changes:
           />
         </geometry>
         <material name="">
-          <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+          <color
+            rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"
+          />
         </material>
       </visual>
       <collision>
@@ -116,16 +120,22 @@ changes:
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://so_arm100_description/meshes/Upper_Arm.STL" />
+          <mesh
+            filename="package://so_arm100_description/meshes/Upper_Arm.STL"
+          />
         </geometry>
         <material name="">
-          <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+          <color
+            rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"
+          />
         </material>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://so_arm100_description/meshes/Upper_Arm.STL" />
+          <mesh
+            filename="package://so_arm100_description/meshes/Upper_Arm.STL"
+          />
         </geometry>
       </collision>
     </link>
@@ -155,16 +165,22 @@ changes:
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://so_arm100_description/meshes/Lower_Arm.STL" />
+          <mesh
+            filename="package://so_arm100_description/meshes/Lower_Arm.STL"
+          />
         </geometry>
         <material name="">
-          <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+          <color
+            rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"
+          />
         </material>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://so_arm100_description/meshes/Lower_Arm.STL" />
+          <mesh
+            filename="package://so_arm100_description/meshes/Lower_Arm.STL"
+          />
         </geometry>
       </collision>
     </link>
@@ -199,7 +215,9 @@ changes:
           />
         </geometry>
         <material name="">
-          <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+          <color
+            rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"
+          />
         </material>
       </visual>
       <collision>
@@ -237,16 +255,22 @@ changes:
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://so_arm100_description/meshes/Fixed_Jaw.STL" />
+          <mesh
+            filename="package://so_arm100_description/meshes/Fixed_Jaw.STL"
+          />
         </geometry>
         <material name="">
-          <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+          <color
+            rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"
+          />
         </material>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://so_arm100_description/meshes/Fixed_Jaw.STL" />
+          <mesh
+            filename="package://so_arm100_description/meshes/Fixed_Jaw.STL"
+          />
         </geometry>
       </collision>
     </link>
@@ -281,7 +305,9 @@ changes:
           />
         </geometry>
         <material name="">
-          <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+          <color
+            rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"
+          />
         </material>
       </visual>
       <collision>
