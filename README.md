@@ -7,6 +7,29 @@ https://github.com/user-attachments/assets/5655b956-5536-4143-9707-17cad5d1cbc8
 
 https://github.com/user-attachments/assets/36ccaca0-82dd-4206-a4dd-953867e89a20
 
+## Installation
+
+```bash
+# 1. Create a workspace
+mkdir -p ~/so_arm_ws/src
+cd ~/so_arm_ws/src
+
+# 2. Clone core packages
+git clone https://github.com/JafarAbdi/ros2_so_arm100.git
+git clone https://github.com/JafarAbdi/feetech_ros2_driver.git
+
+# 3. Pull the CAD sub-module
+git -C ros2_so_arm100 submodule update --init --recursive
+
+# 4. Install ROS dependencies
+cd ~/so_arm_ws
+rosdep install --from-paths src --ignore-src -r -y
+
+# 5. Build
+colcon build --symlink-install
+source install/setup.bash
+```
+
 
 ## Usage
 
