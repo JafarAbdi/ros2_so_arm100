@@ -1,6 +1,8 @@
-# ROS2 SO-ARM100
+# ROS 2 SO-ARM100
 
-Description: ROS 2 description package for https://github.com/TheRobotStudio/SO-ARM100
+Compact ROS 2 description, drivers and MoveIt configuration for the **[SO-ARM100](https://github.com/TheRobotStudio/SO-ARM100)** robotic arm.
+
+*Fully compatible with the mechanically-identical **SO-ARM101**.*
 
 https://github.com/user-attachments/assets/5655b956-5536-4143-9707-17cad5d1cbc8
 
