@@ -33,47 +33,37 @@ source install/setup.bash
 ```
 
 
-## Usage
+## Quick Start
 
-To launch the demo run:
+> **hardware_type:** `mock_components` (RViz-only) | `real` (USB, default `/dev/LeRobotFollower`, override with `usb_port:=<device>`)
 
-```bash
-ros2 launch so_arm100_moveit_config demo.launch.py hardware_type:=mock_components # hardware_type:=real for running with hardware
-```
 
-To launch the controllers run:
+### Full Demo (RViz + controllers + MoveIt)
 
 ```bash
-ros2 launch so_arm100_description controllers_bringup.launch.py hardware_type:=mock_components # hardware_type:=real for running with hardware
-```
+ros2 launch so_arm100_moveit_config demo.launch.py \
+  hardware_type:=mock_components   # or :=real
+````
 
-To launch rviz run:
+### Bring-up Only (no RViz)
 
-```bash
-ros2 run rviz2 rviz2 -d $(ros2 pkg prefix --share so_arm100_description)/rviz/config.rviz
-```
+| Purpose               | Command                                                                                          |
+| --------------------- | ------------------------------------------------------------------------------------------------ |
+| MoveIt server         | `ros2 launch so_arm100_moveit_config move_group.launch.py`                                       |
+| Low-level controllers | `ros2 launch so_arm100_description controllers_bringup.launch.py hardware_type:=mock_components` |
 
-To launch rviz with moveit's Motion Planning plugin:
+### Visualisation Shortcuts
 
-```bash
-ros2 launch so_arm100_moveit_config moveit_rviz.launch.py
-```
+| View                    | Command                                                                                     |
+| ----------------------- | ------------------------------------------------------------------------------------------- |
+| Robot model in RViz     | `ros2 run rviz2 rviz2 -d $(ros2 pkg prefix --share so_arm100_description)/rviz/config.rviz` |
+| RViz with MoveIt plugin | `ros2 launch so_arm100_moveit_config moveit_rviz.launch.py`                                 |
 
-To launch move_group node (without rviz):
-```bash
-ros2 launch so_arm100_moveit_config move_group.launch.py
-```
+### Interact & Test
 
-To test the joint_trajectory_controller run:
+| Tool                     | Command                                                                                                                      |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------- |
+| Joint trajectory GUI     | `ros2 run rqt_joint_trajectory_controller rqt_joint_trajectory_controller`                                                   |
+| MoveIt Setup Assistant\* | `ros2 run moveit_setup_assistant moveit_setup_assistant --config_pkg ~/so_arm_ws/src/ros2_so_arm100/so_arm100_moveit_config` |
 
-```bash
-ros2 run rqt_joint_trajectory_controller rqt_joint_trajectory_controller
-```
-
-## MoveIt Setup Assistant
-
-To regenerate/modify the config files using moveit_setup_assistant
-
-```
-ros2 run moveit_setup_assistant moveit_setup_assistant --config_pkg ~/PATH/ros2_so_arm100/so_arm100_moveit_config
-```
+\*Use the assistant to tweak or regenerate MoveIt configs.
