@@ -4,10 +4,10 @@ Compact ROS 2 description, drivers and MoveIt configuration for the **[SO-ARM100
 
 *Fully compatible with the mechanically-identical **SO-ARM101**.*
 
-https://github.com/user-attachments/assets/5655b956-5536-4143-9707-17cad5d1cbc8
-
-
-https://github.com/user-attachments/assets/36ccaca0-82dd-4206-a4dd-953867e89a20
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/5655b956-5536-4143-9707-17cad5d1cbc8" width="320"/>
+  <img src="https://github.com/user-attachments/assets/36ccaca0-82dd-4206-a4dd-953867e89a20" width="320"/>
+</p>
 
 ## Installation
 
