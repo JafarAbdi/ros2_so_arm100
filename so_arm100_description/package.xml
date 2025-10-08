@@ -22,5 +22,6 @@
   <exec_depend>nav2_common</exec_depend>
   <export>
     <build_type>ament_cmake</build_type>
+     <gazebo_ros gazebo_model_path="${prefix}/so_arm100_description"/>
   </export>
 </package>
