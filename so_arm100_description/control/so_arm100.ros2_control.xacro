@@ -4,7 +4,7 @@
     name="ros2_control"
     params="prefix ros2_control_hardware_type usb_port"
   >
-    <ros2_control name="SO-ARM100" type="system">
+    <ros2_control name="SO_ARM100" type="system">
       <hardware>
         <xacro:if value="${ros2_control_hardware_type == 'mock_components'}">
           <plugin>mock_components/GenericSystem</plugin>
