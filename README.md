@@ -3,15 +3,35 @@
 Compact ROS 2 description, drivers and MoveIt configuration for the **[SO-ARM100](https://github.com/TheRobotStudio/SO-ARM100)** robotic arm.
 
 > [!NOTE]
-> Fully compatible with the mechanically-identical **SO-ARM101**.
+> *Fully compatible with the mechanically-identical **SO-ARM101**.*
 
 <table>
   <tr>
-    <td>
-      <video src="https://github.com/user-attachments/assets/5655b956-5536-4143-9707-17cad5d1cbc8"></video>
+    <td style="vertical-align: top; padding-right: 16px;">
+      <div style="margin-bottom: 12px;">
+        <video
+          src="https://github.com/user-attachments/assets/5655b956-5536-4143-9707-17cad5d1cbc8"
+          controls
+          muted
+          loop
+        ></video>
+      </div>
+      <div>
+        <video
+          src="https://github.com/user-attachments/assets/abf55009-3655-4e24-bebe-3b65d5361f03"
+          controls
+          muted
+          loop
+        ></video>
+      </div>
     </td>
-    <td>
-      <video src="https://github.com/user-attachments/assets/36ccaca0-82dd-4206-a4dd-953867e89a20"></video>
+    <td style="vertical-align: top;">
+      <video
+        src="https://github.com/user-attachments/assets/36ccaca0-82dd-4206-a4dd-953867e89a20"
+        controls
+        muted
+        loop
+      ></video>
     </td>
   </tr>
 </table>
@@ -26,18 +46,19 @@ cd ~/so_arm_ws/src
 # 2. Clone core packages
 git clone https://github.com/JafarAbdi/ros2_so_arm100.git
 git clone https://github.com/JafarAbdi/feetech_ros2_driver.git
-# Below is optional as it's for simulation
+
+# 3. (Optional) Simulation packages
 git clone https://github.com/ros-controls/mujoco_ros2_simulation.git
 git clone https://github.com/pal-robotics/mujoco_vendor.git
 
-# 3. Pull the CAD sub-module
+# 4. Pull the CAD submodule
 git -C ros2_so_arm100 submodule update --init --recursive
 
-# 4. Install ROS dependencies
+# 5. Install ROS dependencies
 cd ~/so_arm_ws
 rosdep install --from-paths src --ignore-src -r -y
 
-# 5. Build
+# 6. Build
 colcon build --symlink-install
 source install/setup.bash
 ```
@@ -45,20 +66,18 @@ source install/setup.bash
 
 ## Quick Start
 
-> [!TIP]
->
-> About hardware_type
-> - `mock_components` -> RViz-only
-> - `real` -> USB, default to `/dev/LeRobotFollower`, override with `usb_port:=<device>`
-> - `mujoco` -> simulation
-
-
 ### Full Demo (RViz + controllers + MoveIt)
 
 ```bash
 ros2 launch so_arm100_moveit_config demo.launch.py \
   hardware_type:=mock_components   # or :=real or :=mujoco
-````
+```
+
+> [!TIP]
+>
+> - `mock_components` -> RViz-only
+> - `real` -> USB, default to `/dev/LeRobotFollower`, override with `usb_port:=<device>`
+> - `mujoco` -> simulation
 
 ### Bring-up Only (no RViz)
 
