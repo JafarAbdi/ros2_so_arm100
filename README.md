@@ -2,7 +2,8 @@
 
 Compact ROS 2 description, drivers and MoveIt configuration for the **[SO-ARM100](https://github.com/TheRobotStudio/SO-ARM100)** robotic arm.
 
-*Fully compatible with the mechanically-identical **SO-ARM101**.*
+> [!NOTE]
+> Fully compatible with the mechanically-identical **SO-ARM101**.
 
 <table>
   <tr>
@@ -25,6 +26,9 @@ cd ~/so_arm_ws/src
 # 2. Clone core packages
 git clone https://github.com/JafarAbdi/ros2_so_arm100.git
 git clone https://github.com/JafarAbdi/feetech_ros2_driver.git
+# Below is optional as it's for simulation
+git clone https://github.com/ros-controls/mujoco_ros2_simulation.git
+git clone https://github.com/pal-robotics/mujoco_vendor.git
 
 # 3. Pull the CAD sub-module
 git -C ros2_so_arm100 submodule update --init --recursive
@@ -41,14 +45,19 @@ source install/setup.bash
 
 ## Quick Start
 
-> **hardware_type:** `mock_components` (RViz-only) | `real` (USB, default `/dev/LeRobotFollower`, override with `usb_port:=<device>`)
+> [!TIP]
+>
+> About hardware_type:
+> - `mock_components` -> RViz-only
+> - `real` -> USB, default to `/dev/LeRobotFollower`, override with `usb_port:=<device>`
+> - `mujoco` -> simulation
 
 
 ### Full Demo (RViz + controllers + MoveIt)
 
 ```bash
 ros2 launch so_arm100_moveit_config demo.launch.py \
-  hardware_type:=mock_components   # or :=real
+  hardware_type:=mock_components   # or :=real or :=mujoco
 ````
 
 ### Bring-up Only (no RViz)
