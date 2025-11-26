@@ -115,9 +115,7 @@ def generate_launch_description():
     )
 
     # Conditions for hardware types
-    is_mujoco = IfCondition(
-        PythonExpression(["'", hardware_type, "' == 'mujoco'"])
-    )
+    is_mujoco = IfCondition(PythonExpression(["'", hardware_type, "' == 'mujoco'"]))
     is_not_mujoco = UnlessCondition(
         PythonExpression(["'", hardware_type, "' == 'mujoco'"])
     )
