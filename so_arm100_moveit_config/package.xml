@@ -5,7 +5,7 @@
   <version>0.3.0</version>
   <description>
     An automatically generated package with all the configuration and launch
-    files for using the so_100arm with the MoveIt Motion Planning Framework
+    files for using the so_arm100 with the MoveIt Motion Planning Framework
   </description>
   <maintainer email="jafar.uruc@gmail.com">Jafar Uruc</maintainer>
 
