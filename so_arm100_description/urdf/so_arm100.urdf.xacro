@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="so_100arm">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="so_arm100">
   <xacro:arg name="ros2_control_hardware_type" default="mock_components" />
   <xacro:arg
     name="ros2_control_file"
