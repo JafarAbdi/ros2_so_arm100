@@ -47,7 +47,7 @@ source install/setup.bash
 
 > [!TIP]
 >
-> About hardware_type:
+> About hardware_type
 > - `mock_components` -> RViz-only
 > - `real` -> USB, default to `/dev/LeRobotFollower`, override with `usb_port:=<device>`
 > - `mujoco` -> simulation
