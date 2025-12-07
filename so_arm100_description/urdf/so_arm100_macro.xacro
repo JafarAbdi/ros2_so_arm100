@@ -45,8 +45,15 @@ changes:
         </geometry>
         <material name="">
           <color
-            rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"
+            rgba="0.05 0.05 0.05 1"
           />
+          <diffuse>0.1 0.1 0.1</diffuse>
+          <specular>1.0 1.0 1.0</specular>
+          <pbr>
+            <metal>
+              <roughness>0.2</roughness>
+            </metal>
+          </pbr>
         </material>
       </visual>
       <collision>
@@ -81,8 +88,15 @@ changes:
         </geometry>
         <material name="">
           <color
-            rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"
+            rgba="0.05 0.05 0.05 1"
           />
+          <diffuse>0.1 0.1 0.1</diffuse>
+          <specular>1.0 1.0 1.0</specular>
+          <pbr>
+            <metal>
+              <roughness>0.2</roughness>
+            </metal>
+          </pbr>
         </material>
       </visual>
       <collision>
@@ -126,8 +140,15 @@ changes:
         </geometry>
         <material name="">
           <color
-            rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"
+            rgba="0.05 0.05 0.05 1"
           />
+          <diffuse>0.1 0.1 0.1</diffuse>
+          <specular>1.0 1.0 1.0</specular>
+          <pbr>
+            <metal>
+              <roughness>0.2</roughness>
+            </metal>
+          </pbr>
         </material>
       </visual>
       <collision>
@@ -171,8 +192,15 @@ changes:
         </geometry>
         <material name="">
           <color
-            rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"
+            rgba="0.05 0.05 0.05 1"
           />
+          <diffuse>0.1 0.1 0.1</diffuse>
+          <specular>1.0 1.0 1.0</specular>
+          <pbr>
+            <metal>
+              <roughness>0.2</roughness>
+            </metal>
+          </pbr>
         </material>
       </visual>
       <collision>
@@ -216,8 +244,15 @@ changes:
         </geometry>
         <material name="">
           <color
-            rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"
+            rgba="0.05 0.05 0.05 1"
           />
+          <diffuse>0.1 0.1 0.1</diffuse>
+          <specular>1.0 1.0 1.0</specular>
+          <pbr>
+            <metal>
+              <roughness>0.2</roughness>
+            </metal>
+          </pbr>
         </material>
       </visual>
       <collision>
@@ -261,8 +296,15 @@ changes:
         </geometry>
         <material name="">
           <color
-            rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"
+            rgba="0.05 0.05 0.05 1"
           />
+          <diffuse>0.1 01.1 0.1</diffuse>
+          <specular>1.0 1.0 1.0</specular>
+          <pbr>
+            <metal>
+              <roughness>0.2</roughness>
+            </metal>
+          </pbr>
         </material>
       </visual>
       <collision>
@@ -306,8 +348,15 @@ changes:
         </geometry>
         <material name="">
           <color
-            rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"
+            rgba="0.05 0.05 0.05 1"
           />
+          <diffuse>0.1 0.1 0.1</diffuse>
+          <specular>1.0 1.0 1.0</specular>
+          <pbr>
+            <metal>
+              <roughness>0.2</roughness>
+            </metal>
+          </pbr>
         </material>
       </visual>
       <collision>
