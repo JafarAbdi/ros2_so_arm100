@@ -20,6 +20,7 @@
   <exec_depend>hardware_interface</exec_depend>
   <exec_depend>ament_index_python</exec_depend>
   <exec_depend>nav2_common</exec_depend>
+  <exec_depend>gz_ros2_control</exec_depend>
   <export>
     <build_type>ament_cmake</build_type>
      <gazebo_ros gazebo_model_path="${prefix}/so_arm100_description"/>
