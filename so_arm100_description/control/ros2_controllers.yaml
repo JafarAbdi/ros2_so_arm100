@@ -12,7 +12,7 @@ controller_manager:
       type: position_controllers/JointGroupPositionController
 
     gripper_controller:
-      type: position_controllers/GripperActionController
+      type: parallel_gripper_action_controller/GripperActionController
 
 
 gripper_controller:
