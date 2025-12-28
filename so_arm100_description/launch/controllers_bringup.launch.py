@@ -120,10 +120,7 @@ def generate_launch_description():
         package="controller_manager",
         executable="ros2_control_node",
         namespace=namespace,
-        parameters=[
-            {"use_sim_time": use_sim_time},
-            namespaced_ros2_controllers_file
-        ],
+        parameters=[{"use_sim_time": use_sim_time}, namespaced_ros2_controllers_file],
         remappings=[("~/robot_description", "/robot_description")],
         output="screen",
         emulate_tty=True,

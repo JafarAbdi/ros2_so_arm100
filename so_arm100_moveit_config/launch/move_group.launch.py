@@ -10,7 +10,7 @@ def generate_launch_description():
     use_sim_time_arg = DeclareLaunchArgument(
         "use_sim_time",
         default_value="False",
-        description="Whether to use simulation time to launch the MoveIt node."
+        description="Whether to use simulation time to launch the MoveIt node.",
     )
 
     moveit_configs = MoveItConfigs()
