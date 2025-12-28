@@ -14,7 +14,7 @@
           <param name="usb_port">${usb_port}</param>
         </xacro:if>
         <xacro:if value="${ros2_control_hardware_type == 'mujoco'}">
-          <plugin>mujoco_ros2_simulation/MujocoSystemInterface</plugin>
+          <plugin>mujoco_ros2_control/MujocoSystemInterface</plugin>
           <param name="mujoco_model">$(find so_arm100_description)/mjcf/scene.xml</param>
         </xacro:if>
       </hardware>

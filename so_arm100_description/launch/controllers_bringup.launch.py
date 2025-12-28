@@ -114,37 +114,19 @@ def generate_launch_description():
         allow_substs=True,
     )
 
-    # Conditions for hardware types
-    is_mujoco = IfCondition(PythonExpression(["'", hardware_type, "' == 'mujoco'"]))
-    is_not_mujoco = UnlessCondition(
-        PythonExpression(["'", hardware_type, "' == 'mujoco'"])
-    )
-
-    # Standard ros2_control_node (mock_components / real)
+    # ros2_control controller manager node
+    use_sim_time = PythonExpression(["'", hardware_type, "' == 'mujoco'"])
     ros2_control_node = Node(
         package="controller_manager",
         executable="ros2_control_node",
         namespace=namespace,
-        parameters=[namespaced_ros2_controllers_file],
-        remappings=[("~/robot_description", "/robot_description")],
-        output="screen",
-        emulate_tty=True,
-        condition=is_not_mujoco,
-    )
-
-    # Mujoco ros2_control_node (simulation backend)
-    mujoco_control_node = Node(
-        package="mujoco_ros2_simulation",
-        executable="ros2_control_node",
-        namespace=namespace,
         parameters=[
-            {"use_sim_time": True},
-            namespaced_ros2_controllers_file,
+            {"use_sim_time": use_sim_time},
+            namespaced_ros2_controllers_file
         ],
         remappings=[("~/robot_description", "/robot_description")],
         output="screen",
         emulate_tty=True,
-        condition=is_mujoco,
     )
 
     # Controller spawners (same for all hardware types)
@@ -166,7 +148,6 @@ def generate_launch_description():
             namespace_arg,
             ros2_control_xacro_file_arg,
             controller_config_file_arg,
-            mujoco_control_node,
             ros2_control_node,
             *make_robot_state_publisher_node(),
         ]
