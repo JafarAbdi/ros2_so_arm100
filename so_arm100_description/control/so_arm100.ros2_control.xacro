@@ -17,6 +17,9 @@
           <plugin>mujoco_ros2_control/MujocoSystemInterface</plugin>
           <param name="mujoco_model">$(find so_arm100_description)/mjcf/scene.xml</param>
         </xacro:if>
+        <xacro:if value="${ros2_control_hardware_type == 'gazebo'}">
+          <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+        </xacro:if>
       </hardware>
       <joint name="${prefix}shoulder_pan_joint">
         <param name="initial_position">0.0</param>

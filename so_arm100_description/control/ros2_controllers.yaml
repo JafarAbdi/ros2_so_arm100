@@ -34,6 +34,7 @@ joint_trajectory_controller:
       - <robot_namespace>elbow_joint
       - <robot_namespace>wrist_pitch_joint
       - <robot_namespace>wrist_roll_joint
+      - <robot_namespace>jaw_joint
 
 forward_position_controller:
   ros__parameters:
@@ -43,3 +44,4 @@ forward_position_controller:
       - <robot_namespace>elbow_joint
       - <robot_namespace>wrist_pitch_joint
       - <robot_namespace>wrist_roll_joint
+      - <robot_namespace>jaw_joint

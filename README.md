@@ -70,14 +70,15 @@ source install/setup.bash
 
 ```bash
 ros2 launch so_arm100_moveit_config demo.launch.py \
-  hardware_type:=mock_components   # or :=real or :=mujoco
+  hardware_type:=mock_components   # or :=real, :=gazebo, :=mujoco
 ```
 
 > [!TIP]
 >
 > - `mock_components` -> RViz-only
 > - `real` -> USB, default to `/dev/LeRobotFollower`, override with `usb_port:=<device>`
-> - `mujoco` -> simulation
+> - `gazebo` -> Gazebo simulation
+> - `mujoco` -> MuJoCo simulation
 
 ### Bring-up Only (no RViz)
 

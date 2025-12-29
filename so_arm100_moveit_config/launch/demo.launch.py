@@ -34,7 +34,7 @@ def generate_launch_description():
         ),
     )
 
-    use_sim_time = PythonExpression(["'", hardware_type, "' == 'mujoco'"])
+    use_sim_time = PythonExpression(["'", hardware_type, "' in ('gazebo', 'mujoco')"])
     moveit_launch = IncludeLaunchDescription(
         AnyLaunchDescriptionSource(
             os.path.join(
