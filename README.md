@@ -49,7 +49,6 @@ git clone https://github.com/JafarAbdi/feetech_ros2_driver.git
 
 # 3. (Optional) MuJoCo packages
 git clone https://github.com/ros-controls/mujoco_ros2_control.git
-git clone https://github.com/pal-robotics/mujoco_vendor.git
 
 # 4. Pull the CAD submodule
 git -C ros2_so_arm100 submodule update --init --recursive
