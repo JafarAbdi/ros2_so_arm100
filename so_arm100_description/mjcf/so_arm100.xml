@@ -1,20 +1,27 @@
 <!-- Adapted from MuJoCo Menagerie -->
 <mujoco model="so_arm100">
-  <compiler angle="radian" meshdir="../meshes" />
+  <compiler angle="radian" meshdir="../SO100/assets" />
 
   <option cone="elliptic" impratio="10" />
 
   <asset>
-    <material name="white" rgba="1 1 1 1" />
+    <material name="3d_printed" rgba="1.0 0.82 0.12 1.0" />
+    <material name="sts3215" rgba="0.1 0.1 0.1 1.0" />
     <material name="transparent_red" rgba="1 0 0 0.3" />
 
-    <mesh name="Base" file="Base.STL" />
-    <mesh name="Rotation_Pitch" file="Rotation_Pitch.STL" />
-    <mesh name="Upper_Arm" file="Upper_Arm.STL" />
-    <mesh name="Lower_Arm" file="Lower_Arm.STL" />
-    <mesh name="Wrist_Pitch_Roll" file="Wrist_Pitch_Roll.STL" />
-    <mesh name="Fixed_Jaw" file="Fixed_Jaw.STL" />
-    <mesh name="Moving_Jaw" file="Moving_Jaw.STL" />
+    <mesh name="Base" file="Base.stl" />
+    <mesh name="Base_Motor" file="Base_Motor.stl" />
+    <mesh name="Rotation_Pitch" file="Rotation_Pitch.stl" />
+    <mesh name="Rotation_Pitch_Motor" file="Rotation_Pitch_Motor.stl" />
+    <mesh name="Upper_Arm" file="Upper_Arm.stl" />
+    <mesh name="Upper_Arm_Motor" file="Upper_Arm_Motor.stl" />
+    <mesh name="Lower_Arm" file="Lower_Arm.stl" />
+    <mesh name="Lower_Arm_Motor" file="Lower_Arm_Motor.stl" />
+    <mesh name="Wrist_Pitch_Roll" file="Wrist_Pitch_Roll.stl" />
+    <mesh name="Wrist_Pitch_Roll_Motor" file="Wrist_Pitch_Roll_Motor.stl" />
+    <mesh name="Fixed_Jaw" file="Fixed_Jaw.stl" />
+    <mesh name="Fixed_Jaw_Motor" file="Fixed_Jaw_Motor.stl" />
+    <mesh name="Moving_Jaw" file="Moving_Jaw.stl" />
   </asset>
 
   <default>
@@ -30,23 +37,33 @@
       <default class="Elbow">
         <joint axis="1 0 0" range="-1.75 1.57" />
       </default>
-      <default class="Wrist_Pitch">
+      <default class="Wrist_Flex">
         <joint axis="1 0 0" range="-3.5 0.2" />
       </default>
       <default class="Wrist_Roll">
         <joint axis="0 1 0" range="-1.0 4.0" />
       </default>
-      <default class="Jaw">
+      <default class="Gripper">
         <joint axis="0 0 1" range="-0.22 2.0" />
       </default>
-      <default class="visual">
+      <default class="visual_3d_printed">
         <geom
           type="mesh"
           contype="0"
           conaffinity="0"
           density="0"
           group="2"
-          material="white"
+          material="3d_printed"
+        />
+      </default>
+      <default class="visual_motor">
+        <geom
+          type="mesh"
+          contype="0"
+          conaffinity="0"
+          density="0"
+          group="2"
+          material="sts3215"
         />
       </default>
       <default class="collision">
@@ -58,7 +75,8 @@
   <worldbody>
     <!-- base link -->
     <body name="base" childclass="so_arm100">
-      <geom type="mesh" mesh="Base" class="visual" />
+      <geom type="mesh" mesh="Base" class="visual_3d_printed" />
+      <geom type="mesh" mesh="Base_Motor" class="visual_motor" />
       <geom type="mesh" mesh="Base" class="collision" />
       <!-- shoulder link -->
       <body
@@ -73,7 +91,8 @@
           diaginertia="5.94278e-05 5.89975e-05 3.13712e-05"
         />
         <joint name="shoulder_pan_joint" class="Rotation" />
-        <geom type="mesh" mesh="Rotation_Pitch" class="visual" />
+        <geom type="mesh" mesh="Rotation_Pitch" class="visual_3d_printed" />
+        <geom type="mesh" mesh="Rotation_Pitch_Motor" class="visual_motor" />
         <geom type="mesh" mesh="Rotation_Pitch" class="collision" />
         <!-- upper arm link -->
         <body name="upper_arm_link" pos="0 0.1025 0.0306">
@@ -84,7 +103,8 @@
             diaginertia="0.000213312 0.000167164 7.01522e-05"
           />
           <joint name="shoulder_lift_joint" class="Pitch" />
-          <geom type="mesh" mesh="Upper_Arm" class="visual" />
+          <geom type="mesh" mesh="Upper_Arm" class="visual_3d_printed" />
+          <geom type="mesh" mesh="Upper_Arm_Motor" class="visual_motor" />
           <geom type="mesh" mesh="Upper_Arm" class="collision" />
           <!-- forearm link -->
           <body name="forearm_link" pos="0 0.11257 0.028">
@@ -94,8 +114,9 @@
               mass="0.147968"
               diaginertia="0.000138803 0.000107748 4.84242e-05"
             />
-            <joint name="elbow_joint" class="Elbow" />
-            <geom type="mesh" mesh="Lower_Arm" class="visual" />
+            <joint name="elbow_flex_joint" class="Elbow" />
+            <geom type="mesh" mesh="Lower_Arm" class="visual_3d_printed" />
+            <geom type="mesh" mesh="Lower_Arm_Motor" class="visual_motor" />
             <geom type="mesh" mesh="Lower_Arm" class="collision" />
             <!-- wrist 1 link -->
             <body name="wrist_1_link" pos="0 0.0052 0.1349">
@@ -105,8 +126,17 @@
                 mass="0.0661321"
                 diaginertia="3.45403e-05 2.39041e-05 1.94704e-05"
               />
-              <joint name="wrist_pitch_joint" class="Wrist_Pitch" />
-              <geom type="mesh" mesh="Wrist_Pitch_Roll" class="visual" />
+              <joint name="wrist_flex_joint" class="Wrist_Flex" />
+              <geom
+                type="mesh"
+                mesh="Wrist_Pitch_Roll"
+                class="visual_3d_printed"
+              />
+              <geom
+                type="mesh"
+                mesh="Wrist_Pitch_Roll_Motor"
+                class="visual_motor"
+              />
               <geom type="mesh" mesh="Wrist_Pitch_Roll" class="collision" />
               <!-- wrist 2 link -->
               <body name="wrist_2_link" pos="0 -0.0601 0">
@@ -117,7 +147,8 @@
                   diaginertia="5.03136e-05 4.64098e-05 2.72961e-05"
                 />
                 <joint name="wrist_roll_joint" class="Wrist_Roll" />
-                <geom type="mesh" mesh="Fixed_Jaw" class="visual" />
+                <geom type="mesh" mesh="Fixed_Jaw" class="visual_3d_printed" />
+                <geom type="mesh" mesh="Fixed_Jaw_Motor" class="visual_motor" />
                 <geom type="mesh" mesh="Fixed_Jaw" class="collision" />
                 <!-- jaw link -->
                 <body name="jaw_link" pos="-0.0202 -0.0244 0" quat="0 0 1 0">
@@ -127,8 +158,12 @@
                     mass="0.0202444"
                     diaginertia="1.11265e-05 8.99651e-06 2.99548e-06"
                   />
-                  <joint name="jaw_joint" class="Jaw" />
-                  <geom type="mesh" mesh="Moving_Jaw" class="visual" />
+                  <joint name="gripper_joint" class="Gripper" />
+                  <geom
+                    type="mesh"
+                    mesh="Moving_Jaw"
+                    class="visual_3d_printed"
+                  />
                   <geom type="mesh" mesh="Moving_Jaw" class="collision" />
                 </body>
               </body>
@@ -154,14 +189,14 @@
     />
     <position
       class="Elbow"
-      name="elbow_joint"
-      joint="elbow_joint"
+      name="elbow_flex_joint"
+      joint="elbow_flex_joint"
       inheritrange="1"
     />
     <position
-      class="Wrist_Pitch"
-      name="wrist_pitch_joint"
-      joint="wrist_pitch_joint"
+      class="Wrist_Flex"
+      name="wrist_flex_joint"
+      joint="wrist_flex_joint"
       inheritrange="1"
     />
     <position
@@ -170,7 +205,12 @@
       joint="wrist_roll_joint"
       inheritrange="1"
     />
-    <position class="Jaw" name="jaw_joint" joint="jaw_joint" inheritrange="1" />
+    <position
+      class="Gripper"
+      name="gripper_joint"
+      joint="gripper_joint"
+      inheritrange="1"
+    />
   </actuator>
 
   <contact>

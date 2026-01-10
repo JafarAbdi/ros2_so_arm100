@@ -11,10 +11,11 @@
   />
   <xacro:arg name="usb_port" default="/dev/LeRobotFollower" />
   <xacro:arg name="prefix" default="" />
+  <xacro:arg name="color" default="1.0 0.82 0.12 1.0" />
 
   <!-- Robot description -->
   <xacro:include filename="$(arg urdf_file)" />
-  <xacro:so_arm100 prefix="$(arg prefix)" />
+  <xacro:so_arm100 prefix="$(arg prefix)" color="$(arg color)" />
 
   <!-- ros2_control description -->
   <xacro:include filename="$(arg ros2_control_file)" />
