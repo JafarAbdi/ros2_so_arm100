@@ -392,7 +392,7 @@ SO-ARM100/Simulation/SO100/so100.urdf with minimal changes:
 
     <transmission name="${prefix}gripper_trans">
       <type>transmission_interface/SimpleTransmission</type>
-      <joint name="${prefix}gripper">
+      <joint name="${prefix}gripper_joint">
         <hardwareInterface>
           hardware_interface/PositionJointInterface
         </hardwareInterface>
