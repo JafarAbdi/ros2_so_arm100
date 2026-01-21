@@ -4,5 +4,27 @@ trajectory_execution:
   allowed_start_tolerance: 0.01
   execution_duration_monitoring: true
 
-moveit_manage_controllers: false
-moveit_controller_manager: moveit_ros_control_interface/Ros2ControlManager
+moveit_controller_manager: moveit_simple_controller_manager/MoveItSimpleControllerManager
+
+moveit_simple_controller_manager:
+  controller_names:
+    - joint_trajectory_controller
+    - gripper_controller
+
+  joint_trajectory_controller:
+    type: FollowJointTrajectory
+    joints:
+      - shoulder_pan_joint
+      - shoulder_lift_joint
+      - elbow_flex_joint
+      - wrist_flex_joint
+      - wrist_roll_joint
+    action_ns: follow_joint_trajectory
+    default: true
+
+  gripper_controller:
+    type: ParallelGripperCommand
+    joints:
+      - gripper_joint
+    action_ns: gripper_cmd
+    default: true
