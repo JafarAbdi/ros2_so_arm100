@@ -17,7 +17,7 @@ controller_manager:
 
 gripper_controller:
   ros__parameters:
-    joint: <robot_namespace>jaw_joint
+    joint: <robot_namespace>gripper_joint
     allow_stalling: true
 
 
@@ -31,8 +31,8 @@ joint_trajectory_controller:
     joints:
       - <robot_namespace>shoulder_pan_joint
       - <robot_namespace>shoulder_lift_joint
-      - <robot_namespace>elbow_joint
-      - <robot_namespace>wrist_pitch_joint
+      - <robot_namespace>elbow_flex_joint
+      - <robot_namespace>wrist_flex_joint
       - <robot_namespace>wrist_roll_joint
       - <robot_namespace>jaw_joint
 
@@ -41,7 +41,7 @@ forward_position_controller:
     joints:
       - <robot_namespace>shoulder_pan_joint
       - <robot_namespace>shoulder_lift_joint
-      - <robot_namespace>elbow_joint
-      - <robot_namespace>wrist_pitch_joint
+      - <robot_namespace>elbow_flex_joint
+      - <robot_namespace>wrist_flex_joint
       - <robot_namespace>wrist_roll_joint
       - <robot_namespace>jaw_joint

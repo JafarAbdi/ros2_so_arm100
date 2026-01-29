@@ -66,12 +66,12 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        base:
+        base_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        forearm_link:
+        lower_arm_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -91,12 +91,12 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        wrist_1_link:
+        wrist_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        wrist_2_link:
+        gripper_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -112,7 +112,7 @@ Visualization Manager:
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: base
+    Fixed Frame: base_link
     Frame Rate: 30
   Name: root
   Tools:
