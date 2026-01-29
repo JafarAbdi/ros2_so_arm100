@@ -35,12 +35,30 @@ def launch_setup(context, *args, **kwargs):
     rviz_config_file = LaunchConfiguration("rviz_config_file")
     gazebo_gui = LaunchConfiguration("gazebo_gui")
     use_namespace = LaunchConfiguration("use_namespace")
+    namespace = LaunchConfiguration("namespace")
     x = LaunchConfiguration("x")
     y = LaunchConfiguration("y")
     z = LaunchConfiguration("z")
     roll = LaunchConfiguration("roll")
     pitch = LaunchConfiguration("pitch")
     yaw = LaunchConfiguration("yaw")
+
+    # Perform substitutions to get actual values
+    namespace_str = namespace.perform(context)
+    use_namespace_str = use_namespace.perform(context)
+
+    # Config substitutions / namespacing for controllers file
+    ros2_controllers_file = ReplaceString(
+        source_file=controllers_file,
+        replacements={"<robot_namespace>": (namespace_str, "/") if use_namespace_str == "true" else ""},
+    )
+
+    namespaced_ros2_controllers_file = RewrittenYaml(
+        source_file=ros2_controllers_file,
+        root_key=namespace_str if use_namespace_str == "true" else "",
+        param_rewrites={},
+        convert_types=True,
+    )
 
     robot_description_content = Command(
         [
@@ -49,7 +67,13 @@ def launch_setup(context, *args, **kwargs):
             description_file,
             " ",
             "simulation_controllers:=",
-            controllers_file,
+            namespaced_ros2_controllers_file,
+            " ",
+            "ros_namespace:=",
+            namespace,
+            " ",
+            "ros2_control_hardware_type:=",
+            "gazebo",
             " ",
             "prefix:=",
             prefix,
@@ -78,6 +102,7 @@ def launch_setup(context, *args, **kwargs):
     robot_state_publisher_node = Node(
         package="robot_state_publisher",
         executable="robot_state_publisher",
+        namespace=namespace,
         output="both",
         parameters=[{"use_sim_time": True}, robot_description],
     )
@@ -94,7 +119,9 @@ def launch_setup(context, *args, **kwargs):
     joint_state_broadcaster_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["joint_state_broadcaster", "--controller-manager", "/controller_manager"],
+        namespace=namespace,
+        arguments=["joint_state_broadcaster"],
+        parameters=[{"use_sim_time": True}],
     )
 
     # Delay rviz start after `joint_state_broadcaster`
@@ -110,13 +137,17 @@ def launch_setup(context, *args, **kwargs):
     initial_joint_controller_spawner_started = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=[initial_joint_controller, "-c", "/controller_manager"],
+        namespace=namespace,
+        arguments=[initial_joint_controller],
+        parameters=[{"use_sim_time": True}],
         condition=IfCondition(activate_joint_controller),
     )
     initial_joint_controller_spawner_stopped = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=[initial_joint_controller, "-c", "/controller_manager", "--stopped"],
+        namespace=namespace,
+        arguments=[initial_joint_controller, "--stopped"],
+        parameters=[{"use_sim_time": True}],
         condition=UnlessCondition(activate_joint_controller),
     )
 
@@ -197,6 +228,13 @@ def generate_launch_description():
             "use_namespace",
             default_value="false",
             description="Whether to apply a namespace to the controller stack",
+        )
+    )
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            "namespace",
+            default_value="",
+            description="Namespace for the controller_manager and related nodes",
         )
     )
     declared_arguments.append(
