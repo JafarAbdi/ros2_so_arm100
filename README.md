@@ -48,14 +48,11 @@ git clone https://github.com/JafarAbdi/feetech_ros2_driver.git
 # 3. (Optional) MuJoCo packages
 git clone https://github.com/ros-controls/mujoco_ros2_control.git
 
-# 4. Pull the CAD submodule
-git -C ros2_so_arm100 submodule update --init --recursive
-
-# 5. Install ROS dependencies
+# 4. Install ROS dependencies
 cd ~/so_arm_ws
 rosdep install --from-paths src --ignore-src -r -y
 
-# 6. Build
+# 5. Build
 colcon build --symlink-install
 source install/setup.bash
 ```
