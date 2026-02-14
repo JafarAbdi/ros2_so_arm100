@@ -1,0 +1,83 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro
+    name="ros2_control"
+    params="prefix ros2_control_hardware_type usb_port"
+  >
+    <ros2_control name="SO_ARM101" type="system">
+      <hardware>
+        <xacro:if value="${ros2_control_hardware_type == 'mock_components'}">
+          <plugin>mock_components/GenericSystem</plugin>
+        </xacro:if>
+        <xacro:if value="${ros2_control_hardware_type == 'real'}">
+          <plugin>feetech_ros2_driver/FeetechHardwareInterface</plugin>
+          <param name="usb_port">${usb_port}</param>
+        </xacro:if>
+        <xacro:if value="${ros2_control_hardware_type == 'mujoco'}">
+          <plugin>mujoco_ros2_control/MujocoSystemInterface</plugin>
+          <param name="mujoco_model">$(find so_arm101_description)/mjcf/scene.xml</param>
+        </xacro:if>
+      </hardware>
+      
+      <joint name="${prefix}shoulder_pan_joint">
+        <param name="initial_position">0.0</param>
+        <param name="id">1</param>
+        <param name="p_cofficient">8</param>
+        <param name="offset">2048</param>
+        <command_interface name="position" />
+        <state_interface name="position" />
+        <state_interface name="velocity" />
+      </joint>
+      
+      <joint name="${prefix}shoulder_lift_joint">
+        <param name="id">2</param>
+        <param name="p_cofficient">16</param>
+        <param name="offset">2125</param>
+        <param name="initial_position">0.0</param>
+        <command_interface name="position" />
+        <state_interface name="position" />
+        <state_interface name="velocity" />
+      </joint>
+      
+      <joint name="${prefix}elbow_flex_joint">
+        <param name="id">3</param>
+        <param name="offset">2080</param>
+        <param name="p_cofficient">16</param>
+        <param name="initial_position">0.0</param>
+        <command_interface name="position" />
+        <state_interface name="position" />
+        <state_interface name="velocity" />
+      </joint>
+      
+      <joint name="${prefix}wrist_flex_joint">
+        <param name="id">4</param>
+        <param name="offset">3110</param>
+        <param name="p_cofficient">16</param>
+        <param name="initial_position">0.0</param>
+        <command_interface name="position" />
+        <state_interface name="position" />
+        <state_interface name="velocity" />
+      </joint>
+      
+      <joint name="${prefix}wrist_roll_joint">
+        <param name="id">5</param>
+        <param name="offset">1024</param>
+        <param name="p_cofficient">16</param>
+        <param name="initial_position">0.0</param>
+        <command_interface name="position" />
+        <state_interface name="position" />
+        <state_interface name="velocity" />
+      </joint>
+      
+      <joint name="${prefix}gripper_joint">
+        <param name="id">6</param>
+        <param name="offset">2070</param>
+        <param name="p_cofficient">16</param>
+        <param name="initial_position">0.0</param>
+        <command_interface name="position" />
+        <state_interface name="position" />
+        <state_interface name="velocity" />
+      </joint>
+    </ros2_control>
+  </xacro:macro>
+</robot>
