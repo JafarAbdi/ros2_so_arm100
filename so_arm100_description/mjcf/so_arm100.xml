@@ -1,6 +1,6 @@
 <!-- Adapted from MuJoCo Menagerie -->
 <mujoco model="so_arm100">
-  <compiler angle="radian" meshdir="../SO100/assets" />
+  <compiler angle="radian" meshdir="../meshes" />
 
   <option cone="elliptic" impratio="10" />
 

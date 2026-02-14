@@ -1,5 +1,5 @@
 <mujoco model="so_arm101">
-  <compiler angle="radian" meshdir="../../../../so_arm100_description/share/so_arm100_description/SO101/assets/" />
+  <compiler angle="radian" meshdir="../meshes" />
 
   <option cone="elliptic" impratio="10" />
 
@@ -19,7 +19,7 @@
     <mesh file="base_so101_v2.stl"/>
 
     <material name="transparent_red" rgba="1 0 0 0.3" />
-    <material name="3d_printed" rgba="1.0 0.82 0.12 1.0" />
+    <material name="3d_printed" rgba="0.2 0.7 0.85 1.0" />
     <material name="sts3215" rgba="0.1 0.1 0.1 1"/>
   </asset>
 
