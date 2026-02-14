@@ -1,6 +1,6 @@
 # ROS 2 package for the SO-ARMs
 
-Compact ROS 2 description, drivers and MoveIt configuration for the **[SO-ARM100 and SO-ARM101](https://github.com/TheRobotStudio/SO-ARM100)** robotic arms. 
+Compact ROS 2 description, drivers and MoveIt configuration for the **[SO-ARM100 and SO-ARM101](https://github.com/TheRobotStudio/SO-ARM100)** robotic arms.
 Leveraging the [`feetech_ros2_driver`](https://github.com/JafarAbdi/feetech_ros2_driver) package.
 
 <table>

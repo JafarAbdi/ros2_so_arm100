@@ -3,7 +3,8 @@
   <name>so_arm100_description</name>
   <version>0.0.0</version>
   <description>
-    ROS 2 description for the SO-ARM100 (https://github.com/TheRobotStudio/SO-ARM100)
+    ROS 2 description for the
+    SO-ARM100 (https://github.com/TheRobotStudio/SO-ARM100)
   </description>
   <maintainer email="jafar.uruc@gmail.com">Jafar Uruc</maintainer>
   <license>BSD</license>

@@ -26,9 +26,7 @@ SO-ARM100/Simulation/SO100/so100.urdf with minimal changes:
       </inertial>
       <visual>
         <geometry>
-          <mesh
-            filename="package://so_arm100_description/meshes/Base.stl"
-          />
+          <mesh filename="package://so_arm100_description/meshes/Base.stl" />
         </geometry>
         <material name="3d_printed" />
       </visual>
@@ -42,9 +40,7 @@ SO-ARM100/Simulation/SO100/so100.urdf with minimal changes:
       </visual>
       <collision>
         <geometry>
-          <mesh
-            filename="package://so_arm100_description/meshes/Base.stl"
-          />
+          <mesh filename="package://so_arm100_description/meshes/Base.stl" />
         </geometry>
       </collision>
     </link>
