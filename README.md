@@ -1,9 +1,7 @@
-# ROS 2 SO-ARM100
+# ROS 2 package for the SO-ARMs
 
-Compact ROS 2 description, drivers and MoveIt configuration for the **[SO-ARM100](https://github.com/TheRobotStudio/SO-ARM100)** robotic arm.
+Compact ROS 2 description, drivers and MoveIt configuration for the **[SO-ARM100 and SO-ARM101](https://github.com/TheRobotStudio/SO-ARM100)** robotic arms.
 
-> [!NOTE]
-> *Fully compatible with the mechanically-identical **SO-ARM101**.*
 
 <table>
   <tr>
@@ -49,7 +47,6 @@ git clone https://github.com/JafarAbdi/feetech_ros2_driver.git
 
 # 3. (Optional) MuJoCo packages
 git clone https://github.com/ros-controls/mujoco_ros2_control.git
-git clone https://github.com/pal-robotics/mujoco_vendor.git
 
 # 4. Pull the CAD submodule
 git -C ros2_so_arm100 submodule update --init --recursive
@@ -74,10 +71,13 @@ ros2 launch so_arm100_moveit_config demo.launch.py \
 ```
 
 > [!TIP]
->
 > - `mock_components` -> RViz-only
 > - `real` -> USB, default to `/dev/LeRobotFollower`, override with `usb_port:=<device>`
 > - `mujoco` -> simulation
+
+> [!NOTE]
+> To use the SO-ARM101, use the `so_arm101_description` package instead.
+
 
 ### Bring-up Only (no RViz)
 
@@ -100,4 +100,4 @@ ros2 launch so_arm100_moveit_config demo.launch.py \
 | Joint trajectory GUI     | `ros2 run rqt_joint_trajectory_controller rqt_joint_trajectory_controller`                                                   |
 | MoveIt Setup Assistant\* | `ros2 run moveit_setup_assistant moveit_setup_assistant --config_pkg ~/so_arm_ws/src/ros2_so_arm100/so_arm100_moveit_config` |
 
-\*Use the assistant to tweak or regenerate MoveIt configs.
+*Use the assistant to tweak or regenerate MoveIt configs.*
