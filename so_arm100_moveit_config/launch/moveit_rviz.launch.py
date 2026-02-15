@@ -4,7 +4,7 @@ from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
-from so_arm100_description.launch_utils import MoveItConfigs
+from so_arm_utils.launch_utils import MoveItConfigs
 
 
 def generate_launch_description():

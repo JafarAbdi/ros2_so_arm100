@@ -8,7 +8,7 @@ from launch_ros.actions import Node
 from launch_ros.descriptions import ParameterFile
 from nav2_common.launch import ReplaceString, RewrittenYaml
 
-from so_arm100_description.launch_utils import launch_configurations, load_xacro
+from so_arm_utils.launch_utils import launch_configurations, load_xacro
 
 startup_controllers = [
     "joint_state_broadcaster",

@@ -3,7 +3,7 @@ from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 
-from so_arm100_description.launch_utils import MoveItConfigs
+from so_arm_utils.launch_utils import MoveItConfigs
 
 
 def generate_launch_description():
