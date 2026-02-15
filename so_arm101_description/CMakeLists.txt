@@ -6,10 +6,4 @@ find_package(ament_cmake_python REQUIRED)
 
 install(DIRECTORY urdf control meshes mjcf rviz launch DESTINATION share/${PROJECT_NAME}/)
 
-install(DIRECTORY
-        DESTINATION share/${PROJECT_NAME}/)
-
-ament_python_install_package(${PROJECT_NAME} SCRIPTS_DESTINATION
-                             lib/${PROJECT_NAME})
-
 ament_package()
