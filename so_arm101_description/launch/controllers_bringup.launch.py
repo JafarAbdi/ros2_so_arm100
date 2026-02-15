@@ -23,9 +23,9 @@ def make_robot_state_publisher_node(args):
     if len(namespace) > 0:
         namespace = namespace + "/"
     robot_description = load_xacro(
-        get_package_share_path("so_arm100_description")
+        get_package_share_path("so_arm101_description")
         / "urdf"
-        / "so_arm100.urdf.xacro",
+        / "so_arm101.urdf.xacro",
         mappings={
             "prefix": namespace,
             "ros2_control_file": args.ros2_control_xacro_file,
@@ -46,13 +46,13 @@ def make_robot_state_publisher_node(args):
 
 
 def generate_launch_description():
-    bringup_dir = get_package_share_path("so_arm100_description")
+    bringup_dir = get_package_share_path("so_arm101_description")
 
     # Launch args
     ros2_control_xacro_file_arg = DeclareLaunchArgument(
         "ros2_control_xacro_file",
         default_value=os.path.join(
-            bringup_dir, "control", "so_arm100.ros2_control.xacro"
+            bringup_dir, "control", "so_arm101.ros2_control.xacro"
         ),
         description="Full path to the ros2_control xacro file",
     )

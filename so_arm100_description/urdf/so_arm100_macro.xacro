@@ -26,25 +26,21 @@ SO-ARM100/Simulation/SO100/so100.urdf with minimal changes:
       </inertial>
       <visual>
         <geometry>
-          <mesh
-            filename="package://so_arm100_description/SO100/assets/Base.stl"
-          />
+          <mesh filename="package://so_arm100_description/meshes/Base.stl" />
         </geometry>
         <material name="3d_printed" />
       </visual>
       <visual>
         <geometry>
           <mesh
-            filename="package://so_arm100_description/SO100/assets/Base_Motor.stl"
+            filename="package://so_arm100_description/meshes/Base_Motor.stl"
           />
         </geometry>
         <material name="sts3215" />
       </visual>
       <collision>
         <geometry>
-          <mesh
-            filename="package://so_arm100_description/SO100/assets/Base.stl"
-          />
+          <mesh filename="package://so_arm100_description/meshes/Base.stl" />
         </geometry>
       </collision>
     </link>
@@ -66,7 +62,7 @@ SO-ARM100/Simulation/SO100/so100.urdf with minimal changes:
       <visual>
         <geometry>
           <mesh
-            filename="package://so_arm100_description/SO100/assets/Rotation_Pitch.stl"
+            filename="package://so_arm100_description/meshes/Rotation_Pitch.stl"
           />
         </geometry>
         <material name="3d_printed" />
@@ -74,7 +70,7 @@ SO-ARM100/Simulation/SO100/so100.urdf with minimal changes:
       <visual>
         <geometry>
           <mesh
-            filename="package://so_arm100_description/SO100/assets/Rotation_Pitch_Motor.stl"
+            filename="package://so_arm100_description/meshes/Rotation_Pitch_Motor.stl"
           />
         </geometry>
         <material name="sts3215" />
@@ -82,7 +78,7 @@ SO-ARM100/Simulation/SO100/so100.urdf with minimal changes:
       <collision>
         <geometry>
           <mesh
-            filename="package://so_arm100_description/SO100/assets/Rotation_Pitch.stl"
+            filename="package://so_arm100_description/meshes/Rotation_Pitch.stl"
           />
         </geometry>
       </collision>
@@ -105,7 +101,7 @@ SO-ARM100/Simulation/SO100/so100.urdf with minimal changes:
       <visual>
         <geometry>
           <mesh
-            filename="package://so_arm100_description/SO100/assets/Upper_Arm.stl"
+            filename="package://so_arm100_description/meshes/Upper_Arm.stl"
           />
         </geometry>
         <material name="3d_printed" />
@@ -113,7 +109,7 @@ SO-ARM100/Simulation/SO100/so100.urdf with minimal changes:
       <visual>
         <geometry>
           <mesh
-            filename="package://so_arm100_description/SO100/assets/Upper_Arm_Motor.stl"
+            filename="package://so_arm100_description/meshes/Upper_Arm_Motor.stl"
           />
         </geometry>
         <material name="sts3215" />
@@ -121,7 +117,7 @@ SO-ARM100/Simulation/SO100/so100.urdf with minimal changes:
       <collision>
         <geometry>
           <mesh
-            filename="package://so_arm100_description/SO100/assets/Upper_Arm.stl"
+            filename="package://so_arm100_description/meshes/Upper_Arm.stl"
           />
         </geometry>
       </collision>
@@ -144,7 +140,7 @@ SO-ARM100/Simulation/SO100/so100.urdf with minimal changes:
       <visual>
         <geometry>
           <mesh
-            filename="package://so_arm100_description/SO100/assets/Lower_Arm.stl"
+            filename="package://so_arm100_description/meshes/Lower_Arm.stl"
           />
         </geometry>
         <material name="3d_printed" />
@@ -152,7 +148,7 @@ SO-ARM100/Simulation/SO100/so100.urdf with minimal changes:
       <visual>
         <geometry>
           <mesh
-            filename="package://so_arm100_description/SO100/assets/Lower_Arm_Motor.stl"
+            filename="package://so_arm100_description/meshes/Lower_Arm_Motor.stl"
           />
         </geometry>
         <material name="sts3215" />
@@ -160,7 +156,7 @@ SO-ARM100/Simulation/SO100/so100.urdf with minimal changes:
       <collision>
         <geometry>
           <mesh
-            filename="package://so_arm100_description/SO100/assets/Lower_Arm.stl"
+            filename="package://so_arm100_description/meshes/Lower_Arm.stl"
           />
         </geometry>
       </collision>
@@ -183,7 +179,7 @@ SO-ARM100/Simulation/SO100/so100.urdf with minimal changes:
       <visual>
         <geometry>
           <mesh
-            filename="package://so_arm100_description/SO100/assets/Wrist_Pitch_Roll.stl"
+            filename="package://so_arm100_description/meshes/Wrist_Pitch_Roll.stl"
           />
         </geometry>
         <material name="3d_printed" />
@@ -191,7 +187,7 @@ SO-ARM100/Simulation/SO100/so100.urdf with minimal changes:
       <visual>
         <geometry>
           <mesh
-            filename="package://so_arm100_description/SO100/assets/Wrist_Pitch_Roll_Motor.stl"
+            filename="package://so_arm100_description/meshes/Wrist_Pitch_Roll_Motor.stl"
           />
         </geometry>
         <material name="sts3215" />
@@ -199,7 +195,7 @@ SO-ARM100/Simulation/SO100/so100.urdf with minimal changes:
       <collision>
         <geometry>
           <mesh
-            filename="package://so_arm100_description/SO100/assets/Wrist_Pitch_Roll.stl"
+            filename="package://so_arm100_description/meshes/Wrist_Pitch_Roll.stl"
           />
         </geometry>
       </collision>
@@ -222,7 +218,7 @@ SO-ARM100/Simulation/SO100/so100.urdf with minimal changes:
       <visual>
         <geometry>
           <mesh
-            filename="package://so_arm100_description/SO100/assets/Fixed_Jaw.stl"
+            filename="package://so_arm100_description/meshes/Fixed_Jaw.stl"
           />
         </geometry>
         <material name="3d_printed" />
@@ -230,7 +226,7 @@ SO-ARM100/Simulation/SO100/so100.urdf with minimal changes:
       <visual>
         <geometry>
           <mesh
-            filename="package://so_arm100_description/SO100/assets/Fixed_Jaw_Motor.stl"
+            filename="package://so_arm100_description/meshes/Fixed_Jaw_Motor.stl"
           />
         </geometry>
         <material name="sts3215" />
@@ -254,7 +250,7 @@ SO-ARM100/Simulation/SO100/so100.urdf with minimal changes:
       <visual>
         <geometry>
           <mesh
-            filename="package://so_arm100_description/SO100/assets/Moving_Jaw.stl"
+            filename="package://so_arm100_description/meshes/Moving_Jaw.stl"
           />
         </geometry>
         <material name="3d_printed" />

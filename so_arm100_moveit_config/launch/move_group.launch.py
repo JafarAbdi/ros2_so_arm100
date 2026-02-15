@@ -3,7 +3,7 @@ from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 
-from so_arm100_description.launch_utils import MoveItConfigs
+from so_arm_utils.launch_utils import MoveItConfigs
 
 
 def generate_launch_description():
@@ -13,7 +13,7 @@ def generate_launch_description():
         description="Whether to use simulation time to launch the MoveIt node.",
     )
 
-    moveit_configs = MoveItConfigs()
+    moveit_configs = MoveItConfigs(robot_name="so_arm100")
     moveit_node = Node(
         package="moveit_ros_move_group",
         executable="move_group",

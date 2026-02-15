@@ -1,0 +1,45 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 50  # Hz
+
+    joint_trajectory_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    forward_position_controller:
+      type: position_controllers/JointGroupPositionController
+
+    gripper_controller:
+      type: parallel_gripper_action_controller/GripperActionController
+
+
+gripper_controller:
+  ros__parameters:
+    joint: <robot_namespace>gripper_joint
+    allow_stalling: true
+
+
+joint_trajectory_controller:
+  ros__parameters:
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    joints:
+      - <robot_namespace>shoulder_pan_joint
+      - <robot_namespace>shoulder_lift_joint
+      - <robot_namespace>elbow_flex_joint
+      - <robot_namespace>wrist_flex_joint
+      - <robot_namespace>wrist_roll_joint
+
+forward_position_controller:
+  ros__parameters:
+    joints:
+      - <robot_namespace>shoulder_pan_joint
+      - <robot_namespace>shoulder_lift_joint
+      - <robot_namespace>elbow_flex_joint
+      - <robot_namespace>wrist_flex_joint
+      - <robot_namespace>wrist_roll_joint

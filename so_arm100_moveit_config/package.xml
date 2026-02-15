@@ -41,6 +41,7 @@
   <exec_depend>so_arm100_description</exec_depend>
   <exec_depend>tf2_ros</exec_depend>
   <exec_depend>xacro</exec_depend>
+  <exec_depend>so_arm_utils</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
