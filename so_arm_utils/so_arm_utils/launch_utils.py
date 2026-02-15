@@ -18,7 +18,7 @@ from so_arm_utils.constants import (
     DEFAULT_PLANNING_PIPELINE,
     MOVEIT_CPP_FILENAME,
     RobotName,
-    get_robot_constants
+    get_robot_constants,
 )
 
 
@@ -109,21 +109,25 @@ class MoveItConfigs:
 
         # Get robot-specific constants.
         constants = get_robot_constants(robot_name)
-        
+
         self.robot_description = {
             "robot_description": load_xacro(
-                constants.robot_description_package_path / "urdf" / constants.robot_description_filename,
+                constants.robot_description_package_path
+                / "urdf"
+                / constants.robot_description_filename,
                 mappings,
             ),
         }
-        
+
         moveit_config_package_path = pathlib.Path(
             get_package_share_directory(constants.moveit_config_package_name),
         )
-        
+
         self.robot_description_semantic = {
             "robot_description_semantic": load_xacro(
-                moveit_config_package_path / "config" / constants.robot_description_semantic_filename,
+                moveit_config_package_path
+                / "config"
+                / constants.robot_description_semantic_filename,
                 mappings,
             ),
         }
@@ -140,7 +144,9 @@ class MoveItConfigs:
         }
         for planning_pipeline in PLANNING_PIPELINES:
             self.planning_pipelines[planning_pipeline] = load_yaml(
-                moveit_config_package_path / "config" / f"{planning_pipeline}_planning.yaml",
+                moveit_config_package_path
+                / "config"
+                / f"{planning_pipeline}_planning.yaml",
             )
 
         self.trajectory_execution = load_yaml(

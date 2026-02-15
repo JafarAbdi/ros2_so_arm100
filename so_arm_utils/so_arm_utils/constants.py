@@ -1,4 +1,5 @@
 """Constants for the robot configuration package."""
+
 import pathlib
 from dataclasses import dataclass
 from typing import Final, Literal
@@ -18,6 +19,7 @@ RobotName = Literal["so_arm100", "so_arm101"]
 @dataclass(frozen=True, slots=True)
 class RobotConstants:
     """Robot-specific constants."""
+
     robot_name: str
     robot_description_package_name: str
     moveit_config_package_name: str
@@ -28,15 +30,15 @@ class RobotConstants:
 
 def get_robot_constants(robot_name: RobotName) -> RobotConstants:
     """Factory function to get robot-specific constants.
-    
+
     Args:
         robot_name: Name of the robot ("so_arm100" or "so_arm101")
-    
+
     Returns:
         RobotConstants dataclass with robot-specific paths and filenames
     """
     robot_description_package_name = f"{robot_name}_description"
-    
+
     return RobotConstants(
         robot_name=robot_name,
         robot_description_package_name=robot_description_package_name,
