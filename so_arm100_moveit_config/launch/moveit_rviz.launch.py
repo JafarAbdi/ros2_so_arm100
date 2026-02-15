@@ -8,7 +8,7 @@ from so_arm_utils.launch_utils import MoveItConfigs
 
 
 def generate_launch_description():
-    moveit_configs = MoveItConfigs()
+    moveit_configs = MoveItConfigs(robot_name="so_arm100")
 
     return LaunchDescription(
         [

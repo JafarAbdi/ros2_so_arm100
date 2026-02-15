@@ -11,16 +11,14 @@ from launch.actions import OpaqueFunction
 from launch.launch_context import LaunchContext
 
 from so_arm_utils.constants import (
-    DEFAULT_PLANNING_PIPELINE,
-    JOINT_LIMITS_FILENAME,
     KINEMATICS_FILENAME,
-    MOVEIT_CONFIG_PACKAGE_NAME,
-    MOVEIT_CPP_FILENAME,
-    PLANNING_PIPELINES,
-    ROBOT_DESCRIPTION_FILENAME,
-    ROBOT_DESCRIPTION_PACKAGE_PATH,
-    ROBOT_DESCRIPTION_SEMANTIC_FILENAME,
+    JOINT_LIMITS_FILENAME,
     TRAJECTORY_EXECUTION_FILENAME,
+    PLANNING_PIPELINES,
+    DEFAULT_PLANNING_PIPELINE,
+    MOVEIT_CPP_FILENAME,
+    RobotName,
+    get_robot_constants
 )
 
 
@@ -77,6 +75,7 @@ def launch_configurations(func):
 class MoveItConfigs:
     """Class containing MoveIt related parameters."""
 
+    robot_name: InitVar[RobotName]
     # A dictionary that contains the mappings to the URDF file.
     mappings: InitVar[dict | None] = None
     # A dictionary that has the contents of the URDF file.
@@ -98,29 +97,33 @@ class MoveItConfigs:
     # A dictionary containing MoveItCpp related parameters.
     moveit_cpp: dict = field(default_factory=dict)
 
-    def __post_init__(self, mappings: dict):
+    def __post_init__(self, robot_name: RobotName, mappings: dict):
         """Load all the MoveIt related parameters.
 
         Args:
+            robot_name: Name of the robot ("so_arm100" or "so_arm101")
             mappings: A dictionary containing the mappings to the URDF file.
         """
         if mappings is None:
             mappings = {}
 
+        # Get robot-specific constants.
+        constants = get_robot_constants(robot_name)
+        
         self.robot_description = {
             "robot_description": load_xacro(
-                ROBOT_DESCRIPTION_PACKAGE_PATH / "urdf" / ROBOT_DESCRIPTION_FILENAME,
+                constants.robot_description_package_path / "urdf" / constants.robot_description_filename,
                 mappings,
             ),
         }
+        
         moveit_config_package_path = pathlib.Path(
-            get_package_share_directory(MOVEIT_CONFIG_PACKAGE_NAME),
+            get_package_share_directory(constants.moveit_config_package_name),
         )
+        
         self.robot_description_semantic = {
             "robot_description_semantic": load_xacro(
-                moveit_config_package_path
-                / "config"
-                / ROBOT_DESCRIPTION_SEMANTIC_FILENAME,
+                moveit_config_package_path / "config" / constants.robot_description_semantic_filename,
                 mappings,
             ),
         }
@@ -137,9 +140,7 @@ class MoveItConfigs:
         }
         for planning_pipeline in PLANNING_PIPELINES:
             self.planning_pipelines[planning_pipeline] = load_yaml(
-                moveit_config_package_path
-                / "config"
-                / f"{planning_pipeline}_planning.yaml",
+                moveit_config_package_path / "config" / f"{planning_pipeline}_planning.yaml",
             )
 
         self.trajectory_execution = load_yaml(
