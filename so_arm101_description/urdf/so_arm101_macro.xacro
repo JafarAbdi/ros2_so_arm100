@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:macro name="so_arm101" params="prefix color:='0.2 0.7 0.85 1.0'">
+  <xacro:macro
+    name="so_arm101"
+    params="
+      prefix
+      color:='1.0 0.82 0.12 1.0'
+      parent:=world
+      x:=0.0
+      y:=0.0
+      z:=0.0
+      roll:=0.0
+      pitch:=0.0
+      yaw:=0.0"
+  >
     <!-- Materials -->
     <material name="3d_printed">
       <color rgba="${color}" />
@@ -9,13 +21,10 @@
       <color rgba="0.1 0.1 0.1 1.0" />
     </material>
 
-    <!-- World link (fixed reference for Gazebo) -->
-    <link name="world" />
-
-    <!-- Fixed joint from world to base -->
-    <joint name="${prefix}world_to_base_joint" type="fixed">
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <parent link="world" />
+    <!-- Fixed joint from parent to base -->
+    <joint name="${prefix}${parent}_to_base_joint" type="fixed">
+      <origin xyz="${x} ${y} ${z}" rpy="${roll} ${pitch} ${yaw}" />
+      <parent link="${parent}" />
       <child link="${prefix}base_link" />
     </joint>
 

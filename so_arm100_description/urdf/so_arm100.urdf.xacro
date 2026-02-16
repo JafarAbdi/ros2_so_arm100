@@ -15,6 +15,7 @@
 
   <!-- Robot description -->
   <xacro:include filename="$(arg urdf_file)" />
+  <link name="world" />
   <xacro:so_arm100 prefix="$(arg prefix)" color="$(arg color)" />
 
   <!-- parameters -->
