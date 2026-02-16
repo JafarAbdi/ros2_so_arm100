@@ -68,7 +68,11 @@ def launch_setup(context, *args, **kwargs):
     # Config substitutions / namespacing for controllers file
     ros2_controllers_file = ReplaceString(
         source_file=controllers_file,
-        replacements={"<robot_namespace>": (namespace_str, "/") if use_namespace_str == "true" else ""},
+        replacements={
+            "<robot_namespace>": (namespace_str, "/")
+            if use_namespace_str == "true"
+            else ""
+        },
     )
 
     namespaced_ros2_controllers_file = RewrittenYaml(
@@ -193,8 +197,14 @@ def launch_setup(context, *args, **kwargs):
         launch_arguments={
             "gz_args": IfElseSubstitution(
                 gazebo_gui,
-                if_value=[" -r -v 4 --physics-engine gz-physics-bullet-featherstone-plugin ", "empty.sdf"],
-                else_value=[" -s -r -v 4 --physics-engine gz-physics-bullet-featherstone-plugin ", "empty.sdf"],
+                if_value=[
+                    " -r -v 4 --physics-engine gz-physics-bullet-featherstone-plugin ",
+                    "empty.sdf",
+                ],
+                else_value=[
+                    " -s -r -v 4 --physics-engine gz-physics-bullet-featherstone-plugin ",
+                    "empty.sdf",
+                ],
             )
         }.items(),
     )
@@ -285,7 +295,9 @@ def generate_launch_description():
         )
     )
     declared_arguments.append(
-        DeclareLaunchArgument("launch_rviz", default_value="true", description="Launch RViz?")
+        DeclareLaunchArgument(
+            "launch_rviz", default_value="true", description="Launch RViz?"
+        )
     )
     declared_arguments.append(
         DeclareLaunchArgument(
@@ -300,22 +312,42 @@ def generate_launch_description():
         )
     )
     declared_arguments.append(
-        DeclareLaunchArgument("x", default_value="0.0", description="Robot spawn X position")
+        DeclareLaunchArgument(
+            "x", default_value="0.0", description="Robot spawn X position"
+        )
     )
     declared_arguments.append(
-        DeclareLaunchArgument("y", default_value="-0.488", description="Robot spawn Y position")
+        DeclareLaunchArgument(
+            "y", default_value="-0.488", description="Robot spawn Y position"
+        )
     )
     declared_arguments.append(
-        DeclareLaunchArgument("z", default_value="0.845", description="Robot spawn Z position")
+        DeclareLaunchArgument(
+            "z", default_value="0.845", description="Robot spawn Z position"
+        )
     )
     declared_arguments.append(
-        DeclareLaunchArgument("roll", default_value="0.0", description="Robot spawn roll orientation (radians)")
+        DeclareLaunchArgument(
+            "roll",
+            default_value="0.0",
+            description="Robot spawn roll orientation (radians)",
+        )
     )
     declared_arguments.append(
-        DeclareLaunchArgument("pitch", default_value="0.0", description="Robot spawn pitch orientation (radians)")
+        DeclareLaunchArgument(
+            "pitch",
+            default_value="0.0",
+            description="Robot spawn pitch orientation (radians)",
+        )
     )
     declared_arguments.append(
-        DeclareLaunchArgument("yaw", default_value="-3.141", description="Robot spawn yaw orientation (radians)")
+        DeclareLaunchArgument(
+            "yaw",
+            default_value="-3.141",
+            description="Robot spawn yaw orientation (radians)",
+        )
     )
 
-    return LaunchDescription(declared_arguments + [OpaqueFunction(function=launch_setup)])
+    return LaunchDescription(
+        declared_arguments + [OpaqueFunction(function=launch_setup)]
+    )

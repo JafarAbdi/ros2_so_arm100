@@ -29,10 +29,12 @@
     usb_port="$(arg usb_port)"
   />
 
-  <gazebo reference="world">
-  </gazebo>
+  <gazebo reference="world" />
   <gazebo>
-    <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+    <plugin
+      filename="gz_ros2_control-system"
+      name="gz_ros2_control::GazeboSimROS2ControlPlugin"
+    >
       <parameters>$(arg simulation_controllers)</parameters>
       <ros>
         <namespace>$(arg ros_namespace)</namespace>
