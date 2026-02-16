@@ -1,5 +1,3 @@
-import xacro
-
 from launch import LaunchDescription
 from launch.actions import (
     DeclareLaunchArgument,
@@ -18,11 +16,9 @@ from launch.substitutions import (
     PathJoinSubstitution,
 )
 from launch_ros.actions import Node
-from launch_ros.descriptions import ParameterFile
 from launch_ros.substitutions import FindPackageShare
 from nav2_common.launch import ReplaceString, RewrittenYaml
 
-from so_arm100_description.launch_utils import launch_configurations, load_xacro
 
 def launch_setup(context, *args, **kwargs):
     # General arguments
