@@ -1,16 +1,11 @@
 import os
 from ament_index_python.packages import get_package_share_path
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, ExecuteProcess
+from launch.actions import DeclareLaunchArgument
 from launch.conditions import IfCondition, UnlessCondition
-from launch.substitutions import (
-    LaunchConfiguration,
-    PythonExpression,
-    PathJoinSubstitution,
-)
+from launch.substitutions import LaunchConfiguration, PythonExpression
 from launch_ros.actions import Node
 from launch_ros.descriptions import ParameterFile
-from launch_ros.substitutions import FindPackageShare
 from nav2_common.launch import ReplaceString, RewrittenYaml
 
 from so_arm_utils.launch_utils import launch_configurations, load_xacro
@@ -28,9 +23,9 @@ def make_robot_state_publisher_node(args):
     if len(namespace) > 0:
         namespace = namespace + "/"
     robot_description = load_xacro(
-        get_package_share_path("so_arm100_description")
+        get_package_share_path("so_arm101_description")
         / "urdf"
-        / "so_arm100.urdf.xacro",
+        / "so_arm101.urdf.xacro",
         mappings={
             "prefix": namespace,
             "ros2_control_file": args.ros2_control_xacro_file,
@@ -51,13 +46,13 @@ def make_robot_state_publisher_node(args):
 
 
 def generate_launch_description():
-    bringup_dir = get_package_share_path("so_arm100_description")
+    bringup_dir = get_package_share_path("so_arm101_description")
 
     # Launch args
     ros2_control_xacro_file_arg = DeclareLaunchArgument(
         "ros2_control_xacro_file",
         default_value=os.path.join(
-            bringup_dir, "control", "so_arm100.ros2_control.xacro"
+            bringup_dir, "control", "so_arm101.ros2_control.xacro"
         ),
         description="Full path to the ros2_control xacro file",
     )
@@ -120,9 +115,7 @@ def generate_launch_description():
     )
 
     # ros2_control controller manager node
-    # If using Gazebo, gz_ros2_control launches its own controller manager.
-    use_sim_time = PythonExpression(["'", hardware_type, "' in ('gazebo', 'mujoco')"])
-    is_gazebo = PythonExpression(["'", hardware_type, "' == 'gazebo'"])
+    use_sim_time = PythonExpression(["'", hardware_type, "' == 'mujoco'"])
     ros2_control_node = Node(
         package="controller_manager",
         executable="ros2_control_node",
@@ -131,7 +124,6 @@ def generate_launch_description():
         remappings=[("~/robot_description", "/robot_description")],
         output="screen",
         emulate_tty=True,
-        condition=UnlessCondition(is_gazebo),
     )
 
     # Controller spawners (same for all hardware types)
@@ -145,21 +137,6 @@ def generate_launch_description():
         for controller in startup_controllers
     ]
 
-    # Start
-    gz_world = PathJoinSubstitution(
-        [
-            FindPackageShare("so_arm100_description"),
-            "models",
-            "so_arm100_description",
-            "model.sdf",
-        ]
-    )
-    gazebo = ExecuteProcess(
-        cmd=["gz", "sim", gz_world],
-        output="screen",
-        condition=IfCondition(is_gazebo),
-    )
-
     return LaunchDescription(
         [
             hardware_type_arg,
@@ -170,7 +147,6 @@ def generate_launch_description():
             controller_config_file_arg,
             ros2_control_node,
             *make_robot_state_publisher_node(),
-            gazebo,
         ]
         + controller_spawners,
     )
