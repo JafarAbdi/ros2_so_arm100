@@ -2,15 +2,16 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:macro
     name="so_arm101"
-    params="prefix
-                       color:='1.0 0.82 0.12 1.0'
-                       parent:=world
-                       x:=0.0
-                       y:=0.0
-                       z:=0.0
-                       roll:=0.0
-                       pitch:=0.0
-                       yaw:=0.0"
+    params="
+      prefix
+      color:='1.0 0.82 0.12 1.0'
+      parent:=world
+      x:=0.0
+      y:=0.0
+      z:=0.0
+      roll:=0.0
+      pitch:=0.0
+      yaw:=0.0"
   >
     <!-- Materials -->
     <material name="3d_printed">
