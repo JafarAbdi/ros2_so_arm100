@@ -7,8 +7,9 @@ SO-ARM100/Simulation/SO100/so100.urdf with minimal changes:
 - Update default positions and limits of some joints
 -->
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:macro name="so_arm100" 
-               params="prefix
+  <xacro:macro
+    name="so_arm100"
+    params="prefix
                        color:='1.0 0.82 0.12 1.0'
                        parent:=world
                        x:=0.0
@@ -16,8 +17,8 @@ SO-ARM100/Simulation/SO100/so100.urdf with minimal changes:
                        z:=0.0
                        roll:=0.0
                        pitch:=0.0
-                       yaw:=0.0">
-
+                       yaw:=0.0"
+  >
     <!-- Materials -->
     <material name="3d_printed">
       <color rgba="${color}" />
