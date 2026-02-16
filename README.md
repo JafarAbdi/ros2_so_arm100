@@ -24,12 +24,22 @@ Leveraging the [`feetech_ros2_driver`](https://github.com/JafarAbdi/feetech_ros2
       </div>
     </td>
     <td style="vertical-align: top;">
-      <video
-        src="https://github.com/user-attachments/assets/36ccaca0-82dd-4206-a4dd-953867e89a20"
-        controls
-        muted
-        loop
-      ></video>
+      <div style="margin-bottom: 12px;">
+        <video
+          src="https://github.com/user-attachments/assets/36ccaca0-82dd-4206-a4dd-953867e89a20"
+          controls
+          muted
+          loop
+        ></video>
+      </div>
+      <div>
+        <video
+          src="https://github.com/user-attachments/assets/4c50575a-0a44-43e2-adc7-abf2d15a16f2"
+          controls
+          muted
+          loop
+        ></video>
+      </div>
     </td>
   </tr>
 </table>
@@ -76,7 +86,6 @@ ros2 launch so_arm100_moveit_config demo.launch.py \
 > [!NOTE]
 > To use the SO-ARM101, use the `so_arm101_description` package instead.
 
-
 ### Bring-up Only (no RViz)
 
 | Purpose               | Command                                                                                          |
@@ -99,3 +108,14 @@ ros2 launch so_arm100_moveit_config demo.launch.py \
 | MoveIt Setup Assistant\* | `ros2 run moveit_setup_assistant moveit_setup_assistant --config_pkg ~/so_arm_ws/src/ros2_so_arm100/so_arm100_moveit_config` |
 
 *Use the assistant to tweak or regenerate MoveIt configs.*
+
+### Gazebo Simulation
+
+Launch standalone Gazebo simulation with ros2_control (no MoveIt):
+
+```bash
+ros2 launch so_arm_gz so_arm_gz_bringup.launch.py arm_id:=so_arm101 # or amr_id:=so_arm100
+```
+
+> [!TIP]
+> See [so_arm_gz/README.md](so_arm_gz/README.md) for all configuration options.
