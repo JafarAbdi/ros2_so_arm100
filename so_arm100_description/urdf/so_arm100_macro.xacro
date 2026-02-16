@@ -16,6 +16,16 @@ SO-ARM100/Simulation/SO100/so100.urdf with minimal changes:
       <color rgba="0.1 0.1 0.1 1.0" />
     </material>
 
+    <!-- World link (fixed reference for Gazebo) -->
+    <link name="world" />
+
+    <!-- Fixed joint from world to base -->
+    <joint name="${prefix}world_to_base_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="world" />
+      <child link="${prefix}base_link" />
+    </joint>
+
     <!-- Link base -->
     <link name="${prefix}base_link">
       <inertial>

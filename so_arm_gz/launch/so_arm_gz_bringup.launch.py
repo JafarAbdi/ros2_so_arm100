@@ -8,6 +8,7 @@ from launch.actions import (
 from launch.conditions import IfCondition, UnlessCondition
 from launch.event_handlers import OnProcessExit
 from launch.launch_description_sources import PythonLaunchDescriptionSource
+
 from launch.substitutions import (
     Command,
     FindExecutable,
@@ -16,19 +17,18 @@ from launch.substitutions import (
     PathJoinSubstitution,
 )
 from launch_ros.actions import Node
+from launch_ros.parameter_descriptions import ParameterValue
 from launch_ros.substitutions import FindPackageShare
 from nav2_common.launch import ReplaceString, RewrittenYaml
 
 
 def launch_setup(context, *args, **kwargs):
     # General arguments
-    controllers_file = LaunchConfiguration("controllers_file")
+    arm_id = LaunchConfiguration("arm_id")
     prefix = LaunchConfiguration("prefix")
     activate_joint_controller = LaunchConfiguration("activate_joint_controller")
     initial_joint_controller = LaunchConfiguration("initial_joint_controller")
-    description_file = LaunchConfiguration("description_file")
     launch_rviz = LaunchConfiguration("launch_rviz")
-    rviz_config_file = LaunchConfiguration("rviz_config_file")
     gazebo_gui = LaunchConfiguration("gazebo_gui")
     use_namespace = LaunchConfiguration("use_namespace")
     namespace = LaunchConfiguration("namespace")
@@ -40,8 +40,30 @@ def launch_setup(context, *args, **kwargs):
     yaw = LaunchConfiguration("yaw")
 
     # Perform substitutions to get actual values
+    arm_id_str = arm_id.perform(context)
     namespace_str = namespace.perform(context)
     use_namespace_str = use_namespace.perform(context)
+
+    # Compute package-specific paths based on arm_id
+    description_package = f"{arm_id_str}_description"
+
+    controllers_file = LaunchConfiguration("controllers_file").perform(context)
+    if not controllers_file:  # Use default if not provided
+        controllers_file = PathJoinSubstitution(
+            [FindPackageShare(description_package), "control", "ros2_controllers.yaml"]
+        )
+
+    description_file = LaunchConfiguration("description_file").perform(context)
+    if not description_file:  # Use default if not provided
+        description_file = PathJoinSubstitution(
+            [FindPackageShare(description_package), "urdf", f"{arm_id_str}.urdf.xacro"]
+        )
+
+    rviz_config_file = LaunchConfiguration("rviz_config_file").perform(context)
+    if not rviz_config_file:  # Use default if not provided
+        rviz_config_file = PathJoinSubstitution(
+            [FindPackageShare(description_package), "rviz", "config.rviz"]
+        )
 
     # Config substitutions / namespacing for controllers file
     ros2_controllers_file = ReplaceString(
@@ -93,7 +115,9 @@ def launch_setup(context, *args, **kwargs):
             yaw,
         ]
     )
-    robot_description = {"robot_description": robot_description_content}
+    robot_description = {
+        "robot_description": ParameterValue(robot_description_content, value_type=str)
+    }
 
     robot_state_publisher_node = Node(
         package="robot_state_publisher",
@@ -156,7 +180,7 @@ def launch_setup(context, *args, **kwargs):
             "-string",
             robot_description_content,
             "-name",
-            "so101",
+            arm_id_str,
             "-allow_renaming",
             "true",
         ],
@@ -203,11 +227,17 @@ def generate_launch_description():
     declared_arguments = []
     declared_arguments.append(
         DeclareLaunchArgument(
+            "arm_id",
+            default_value="so_arm101",
+            choices=["so_arm100", "so_arm101"],
+            description="Arm type: 'so_arm100' or 'so_arm101'",
+        )
+    )
+    declared_arguments.append(
+        DeclareLaunchArgument(
             "controllers_file",
-            default_value=PathJoinSubstitution(
-                [FindPackageShare("so_arm100_description"), "control", "ros2_controllers.yaml"]
-            ),
-            description="Absolute path to YAML file with the controllers configuration.",
+            default_value="",
+            description="Absolute path to YAML file with the controllers configuration. If empty, uses {arm_id}_description/control/ros2_controllers.yaml",
         )
     )
     declared_arguments.append(
@@ -250,10 +280,8 @@ def generate_launch_description():
     declared_arguments.append(
         DeclareLaunchArgument(
             "description_file",
-            default_value=PathJoinSubstitution(
-                [FindPackageShare("so_arm100_description"), "urdf", "so_arm100.urdf.xacro"]
-            ),
-            description="URDF/XACRO description file (absolute path) with the robot.",
+            default_value="",
+            description="URDF/XACRO description file (absolute path) with the robot. If empty, uses {arm_id}_description/urdf/{arm_id}.urdf.xacro",
         )
     )
     declared_arguments.append(
@@ -262,10 +290,8 @@ def generate_launch_description():
     declared_arguments.append(
         DeclareLaunchArgument(
             "rviz_config_file",
-            default_value=PathJoinSubstitution(
-                [FindPackageShare("so_arm100_description"), "rviz", "config.rviz"]
-            ),
-            description="Rviz config file (absolute path) to use when launching rviz.",
+            default_value="",
+            description="Rviz config file (absolute path) to use when launching rviz. If empty, uses {arm_id}_description/rviz/config.rviz",
         )
     )
     declared_arguments.append(
