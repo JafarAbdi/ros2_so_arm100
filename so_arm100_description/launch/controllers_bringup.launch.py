@@ -1,16 +1,14 @@
 import os
 from ament_index_python.packages import get_package_share_path
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, ExecuteProcess
+from launch.actions import DeclareLaunchArgument
 from launch.conditions import IfCondition, UnlessCondition
 from launch.substitutions import (
     LaunchConfiguration,
     PythonExpression,
-    PathJoinSubstitution,
 )
 from launch_ros.actions import Node
 from launch_ros.descriptions import ParameterFile
-from launch_ros.substitutions import FindPackageShare
 from nav2_common.launch import ReplaceString, RewrittenYaml
 
 from so_arm_utils.launch_utils import launch_configurations, load_xacro
@@ -145,21 +143,6 @@ def generate_launch_description():
         for controller in startup_controllers
     ]
 
-    # Start
-    gz_world = PathJoinSubstitution(
-        [
-            FindPackageShare("so_arm100_description"),
-            "models",
-            "so_arm100_description",
-            "model.sdf",
-        ]
-    )
-    gazebo = ExecuteProcess(
-        cmd=["gz", "sim", gz_world],
-        output="screen",
-        condition=IfCondition(is_gazebo),
-    )
-
     return LaunchDescription(
         [
             hardware_type_arg,
@@ -170,7 +153,6 @@ def generate_launch_description():
             controller_config_file_arg,
             ros2_control_node,
             *make_robot_state_publisher_node(),
-            gazebo,
         ]
         + controller_spawners,
     )
