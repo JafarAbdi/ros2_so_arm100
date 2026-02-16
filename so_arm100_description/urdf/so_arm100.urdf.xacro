@@ -17,6 +17,10 @@
   <xacro:include filename="$(arg urdf_file)" />
   <xacro:so_arm100 prefix="$(arg prefix)" color="$(arg color)" />
 
+  <!-- parameters -->
+  <xacro:arg name="simulation_controllers" default="" />
+  <xacro:arg name="ros_namespace" default="" />
+
   <!-- ros2_control description -->
   <xacro:include filename="$(arg ros2_control_file)" />
   <xacro:ros2_control
@@ -24,4 +28,17 @@
     ros2_control_hardware_type="$(arg ros2_control_hardware_type)"
     usb_port="$(arg usb_port)"
   />
+
+  <gazebo reference="world" />
+  <gazebo>
+    <plugin
+      filename="gz_ros2_control-system"
+      name="gz_ros2_control::GazeboSimROS2ControlPlugin"
+    >
+      <parameters>$(arg simulation_controllers)</parameters>
+      <ros>
+        <namespace>$(arg ros_namespace)</namespace>
+      </ros>
+    </plugin>
+  </gazebo>
 </robot>

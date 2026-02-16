@@ -3,7 +3,10 @@ from ament_index_python.packages import get_package_share_path
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch.conditions import IfCondition, UnlessCondition
-from launch.substitutions import LaunchConfiguration, PythonExpression
+from launch.substitutions import (
+    LaunchConfiguration,
+    PythonExpression,
+)
 from launch_ros.actions import Node
 from launch_ros.descriptions import ParameterFile
 from nav2_common.launch import ReplaceString, RewrittenYaml
@@ -115,7 +118,9 @@ def generate_launch_description():
     )
 
     # ros2_control controller manager node
-    use_sim_time = PythonExpression(["'", hardware_type, "' == 'mujoco'"])
+    # If using Gazebo, gz_ros2_control launches its own controller manager.
+    use_sim_time = PythonExpression(["'", hardware_type, "' in ('gazebo', 'mujoco')"])
+    is_gazebo = PythonExpression(["'", hardware_type, "' == 'gazebo'"])
     ros2_control_node = Node(
         package="controller_manager",
         executable="ros2_control_node",
@@ -124,6 +129,7 @@ def generate_launch_description():
         remappings=[("~/robot_description", "/robot_description")],
         output="screen",
         emulate_tty=True,
+        condition=UnlessCondition(is_gazebo),
     )
 
     # Controller spawners (same for all hardware types)

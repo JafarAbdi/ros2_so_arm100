@@ -19,6 +19,9 @@
             $(find so_arm101_description)/mjcf/scene.xml
           </param>
         </xacro:if>
+        <xacro:if value="${ros2_control_hardware_type == 'gazebo'}">
+          <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+        </xacro:if>
       </hardware>
 
       <joint name="${prefix}shoulder_pan_joint">
