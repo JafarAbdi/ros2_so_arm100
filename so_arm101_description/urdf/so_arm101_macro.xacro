@@ -611,12 +611,12 @@
     <joint name="${prefix}wrist_flex_joint" type="revolute">
       <origin
         xyz="-0.1349 0.0052 3.62355e-17"
-        rpy="4.02456e-15 8.67362e-16 -1.5708"
+        rpy="-1.41553e-15 4.91611e-15 7.56157e-09"
       />
       <parent link="${prefix}lower_arm_link" />
       <child link="${prefix}wrist_link" />
       <axis xyz="0 0 1" />
-      <limit effort="10" velocity="10" lower="-1.65806" upper="1.65806" />
+      <limit effort="10" velocity="10" lower="-3.5" upper="0.2" />
     </joint>
 
     <transmission name="${prefix}wrist_flex_trans">
@@ -636,11 +636,11 @@
 
     <!-- Joint from wrist to gripper -->
     <joint name="${prefix}wrist_roll_joint" type="revolute">
-      <origin xyz="5.55112e-17 -0.0611 0.0181" rpy="1.5708 0.0486795 3.14159" />
+      <origin xyz="2.77556e-17 -0.0611 0.0181" rpy="1.5708 1.5708 3.14159" />
       <parent link="${prefix}wrist_link" />
       <child link="${prefix}gripper_link" />
       <axis xyz="0 0 1" />
-      <limit effort="10" velocity="10" lower="-2.74385" upper="2.84121" />
+      <limit effort="10" velocity="10" lower="-1.0" upper="4.0" />
     </joint>
 
     <transmission name="${prefix}wrist_roll_trans">
