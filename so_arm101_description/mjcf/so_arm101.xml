@@ -217,7 +217,7 @@
               axis="0 0 1"
               name="elbow_flex_joint"
               type="hinge"
-              range="-1.69 1.69"
+              range="-1.69 1.54"
               class="sts3215"
             />
             <inertial
@@ -271,13 +271,13 @@
             <body
               name="wrist_link"
               pos="-0.1349 0.0052 3.62355e-17"
-              quat="0.707107 9.58722e-16 -7.51313e-16 -0.707107"
+              quat="0.707388 0.0 0.0 -0.706825"
             >
               <joint
                 axis="0 0 1"
                 name="wrist_flex_joint"
                 type="hinge"
-                range="-1.6580628494556928 1.6580627293335335"
+                range="-1.6 1.6"
                 class="sts3215"
               />
               <inertial
@@ -316,14 +316,14 @@
               <!-- Link gripper -->
               <body
                 name="gripper_link"
-                pos="5.55112e-17 -0.0611 0.0181"
-                quat="0.0172091 -0.0172091 0.706897 0.706897"
+                pos="0.0 -0.0611 0.0181"
+                quat="0.000563 -0.000563 0.707388 0.706825"
               >
                 <joint
                   axis="0 0 1"
                   name="wrist_roll_joint"
                   type="hinge"
-                  range="-2.7438472969992493 2.841206309382605"
+                  range="-2.3 2.3"
                   class="sts3215"
                 />
                 <inertial
@@ -369,13 +369,13 @@
                 <body
                   name="jaw_link"
                   pos="0.0202 0.0188 -0.0234"
-                  quat="0.707107 0.707107 -1.85362e-08 1.85362e-08"
+                  quat="0.704244 0.704246 0.063554 -0.063554"
                 >
                   <joint
                     axis="0 0 1"
                     name="gripper_joint"
                     type="hinge"
-                    range="-0.17453297762778586 1.7453291995659765"
+                    range="0.0 1.0"
                     class="sts3215"
                   />
                   <inertial
@@ -426,28 +426,28 @@
       name="elbow_flex_joint"
       joint="elbow_flex_joint"
       forcerange="-3.35 3.35"
-      ctrlrange="-1.69 1.69"
+      ctrlrange="-1.69 1.54"
     />
     <position
       class="sts3215"
       name="wrist_flex_joint"
       joint="wrist_flex_joint"
       forcerange="-3.35 3.35"
-      ctrlrange="-1.65806 1.65806"
+      ctrlrange="-1.6 1.6"
     />
     <position
       class="sts3215"
       name="wrist_roll_joint"
       joint="wrist_roll_joint"
       forcerange="-3.35 3.35"
-      ctrlrange="-2.74385 2.84121"
+      ctrlrange="-2.3 2.3"
     />
     <position
       class="sts3215"
       name="gripper_joint"
       joint="gripper_joint"
       forcerange="-3.35 3.35"
-      ctrlrange="-0.17453 1.74533"
+      ctrlrange="0.0 1.0"
     />
   </actuator>
 

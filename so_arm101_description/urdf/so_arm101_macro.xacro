@@ -589,7 +589,7 @@
       <parent link="${prefix}upper_arm_link" />
       <child link="${prefix}lower_arm_link" />
       <axis xyz="0 0 1" />
-      <limit effort="10" velocity="10" lower="-1.69" upper="1.69" />
+      <limit effort="10" velocity="10" lower="-1.69" upper="1.54" />
     </joint>
 
     <transmission name="${prefix}elbow_flex_trans">
@@ -611,12 +611,12 @@
     <joint name="${prefix}wrist_flex_joint" type="revolute">
       <origin
         xyz="-0.1349 0.0052 3.62355e-17"
-        rpy="4.02456e-15 8.67362e-16 -1.5708"
+        rpy="-1.41553e-15 4.91611e-15 -1.57"
       />
       <parent link="${prefix}lower_arm_link" />
       <child link="${prefix}wrist_link" />
       <axis xyz="0 0 1" />
-      <limit effort="10" velocity="10" lower="-1.65806" upper="1.65806" />
+      <limit effort="10" velocity="10" lower="-1.6" upper="1.6" />
     </joint>
 
     <transmission name="${prefix}wrist_flex_trans">
@@ -636,11 +636,11 @@
 
     <!-- Joint from wrist to gripper -->
     <joint name="${prefix}wrist_roll_joint" type="revolute">
-      <origin xyz="5.55112e-17 -0.0611 0.0181" rpy="1.5708 0.0486795 3.14159" />
+      <origin xyz="0.0 -0.0611  0.0181" rpy="-1.57 3.14 0" />
       <parent link="${prefix}wrist_link" />
       <child link="${prefix}gripper_link" />
       <axis xyz="0 0 1" />
-      <limit effort="10" velocity="10" lower="-2.74385" upper="2.84121" />
+      <limit effort="10" velocity="10" lower="-2.3" upper="2.3" />
     </joint>
 
     <transmission name="${prefix}wrist_roll_trans">
@@ -668,14 +668,11 @@
 
     <!-- Joint from gripper to jaw -->
     <joint name="${prefix}gripper_joint" type="revolute">
-      <origin
-        xyz="0.0202 0.0188 -0.0234"
-        rpy="1.5708 -5.24284e-08 -1.41553e-15"
-      />
+      <origin xyz="0.0202 0.0188 -0.0234" rpy="1.5708 0.18 -1.41553e-15" />
       <parent link="${prefix}gripper_link" />
       <child link="${prefix}jaw_link" />
       <axis xyz="0 0 1" />
-      <limit effort="10" velocity="10" lower="-0.174533" upper="1.74533" />
+      <limit effort="10" velocity="10" lower="0.0" upper="1." />
     </joint>
 
     <transmission name="${prefix}gripper_trans">
