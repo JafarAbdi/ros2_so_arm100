@@ -7,7 +7,7 @@ for 3D visualization.
 Usage:
     ros2 launch so_arm101_description view_description.launch.py
     ros2 launch so_arm101_description view_description.launch.py rviz:=true
-    ros2 launch so_arm101_description view_description.launch.py jsp:=false
+    ros2 launch so_arm101_description view_description.launch.py joint_state_publisher:=false
 """
 
 import os
@@ -33,14 +33,12 @@ def generate_launch_description():
         "rviz", default_value="false", description="Open RViz."
     )
     jsp_arg = DeclareLaunchArgument(
-        "jsp",
+        "joint_state_publisher",
         default_value="true",
         description="Run joint state publisher gui node.",
     )
 
-    pkg_so_arm101_description = get_package_share_directory(
-        "so_arm101_description"
-    )
+    pkg_so_arm101_description = get_package_share_directory("so_arm101_description")
 
     # Robot description via xacro
     robot_description_content = Command(
@@ -62,7 +60,13 @@ def generate_launch_description():
         package="robot_state_publisher",
         executable="robot_state_publisher",
         output="both",
-        parameters=[{"robot_description": ParameterValue(robot_description_content, value_type=str)}],
+        parameters=[
+            {
+                "robot_description": ParameterValue(
+                    robot_description_content, value_type=str
+                )
+            }
+        ],
     )
 
     # Joint State Publisher GUI
@@ -70,7 +74,7 @@ def generate_launch_description():
         package="joint_state_publisher_gui",
         executable="joint_state_publisher_gui",
         name="joint_state_publisher_gui",
-        condition=IfCondition(LaunchConfiguration("jsp")),
+        condition=IfCondition(LaunchConfiguration("joint_state_publisher")),
     )
 
     # RViz

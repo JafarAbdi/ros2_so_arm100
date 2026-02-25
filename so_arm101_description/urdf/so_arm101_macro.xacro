@@ -668,10 +668,7 @@
 
     <!-- Joint from gripper to jaw -->
     <joint name="${prefix}gripper_joint" type="revolute">
-      <origin
-        xyz="0.0202 0.0188 -0.0234"
-        rpy="1.5708 0.18 -1.41553e-15"
-      />
+      <origin xyz="0.0202 0.0188 -0.0234" rpy="1.5708 0.18 -1.41553e-15" />
       <parent link="${prefix}gripper_link" />
       <child link="${prefix}jaw_link" />
       <axis xyz="0 0 1" />
